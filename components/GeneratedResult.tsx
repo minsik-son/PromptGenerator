@@ -1,9 +1,13 @@
 import React from 'react';
 
+interface GeneratedItem {
+    title: string;
+    prompt: string;
+}
 
 interface GeneratedResultProps {
     isGenerating: boolean;
-    generatedPrompts: { title: string; prompt: string }[];
+    generatedPrompts: GeneratedItem[];
     copyToClipboard: (text: string, index: number) => void;
     copiedIndex: number | null;
 }

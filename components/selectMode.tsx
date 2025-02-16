@@ -16,9 +16,24 @@ export function SelectMode() {
   const [activeTab, setActiveTab] = useState('song');
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedPrompts, setGeneratedPrompts] = useState<GeneratedItem[]>([]);
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
+  };
+
+  const copyToClipboard = async (text: string, index: number) => {
+    try {
+        await navigator.clipboard.writeText(text);
+        setCopiedIndex(index);
+        
+        // 1초 후에 복사 상태 초기화
+        setTimeout(() => {
+            setCopiedIndex(null);
+        }, 1000);
+    } catch (err) {
+        console.error('Failed to copy:', err);
+    }
   };
 
   return (
@@ -65,7 +80,7 @@ export function SelectMode() {
         generatedPrompts={generatedPrompts} 
         copyToClipboard={copyToClipboard} 
         copiedIndex={copiedIndex} 
-    />
+      />
     </div>
   )
 }
