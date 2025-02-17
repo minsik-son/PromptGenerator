@@ -6,13 +6,16 @@ const songSelectClass = `mt-1 block rounded-lg border-2 border-gray-200 bg-white
 focus:border-black focus:ring-1 focus:ring-black transition-colors cursor-pointer
 [&>*]:py-2 [&>*]:px-4 [&>*]:bg-white hover:[&>*]:bg-gray-50/50 song-select md:w-[250px]`;
 
-export function SongGeneratorForm() {
-  const [prompt, setPrompt] = useState<string>('');
+interface SongGeneratorFormProps {
+  prompt: string;
+  setPrompt: (prompt: string) => void;
+  options: PromptOptions;
+  setOptions: (options: PromptOptions) => void;
+}
+
+export function SongGeneratorForm({ prompt, setPrompt, options, setOptions }: SongGeneratorFormProps) {
   const [promptLength, setPromptLength] = useState<number>(0);
-  const [options, setOptions] = useState<PromptOptions>({});
   const [isGenerating, setIsGenerating] = useState(false);
-
-
 
   const handleOptionChange = (key: keyof PromptOptions, value: string | string[]) => {
     setOptions((prev: PromptOptions) => ({

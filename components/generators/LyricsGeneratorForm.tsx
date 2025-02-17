@@ -8,15 +8,23 @@ const lyricsSelectClass = `mt-1 block rounded-lg border-2 border-gray-200 bg-whi
   focus:border-black focus:ring-1 focus:ring-black transition-colors cursor-pointer
   [&>*]:py-2 [&>*]:px-4 [&>*]:bg-white hover:[&>*]:bg-gray-50/50 lyrics-select md:w-[250px]`;
 
-export function LyricsGeneratorForm() {
-  const [prompt, setPrompt] = useState('');
-  const [customThemePrompt, setCustomThemePrompt] = useState(''); // Custom theme 상태 추가
-  const [lyricsOptions, setLyricsOptions] = useState<LyricsOptions>({
-    structure: [], // 빈 배열로 초기화
-    theme: '',
-    language: ''
-});
+interface LyricsGeneratorFormProps {
+  prompt: string;
+  setPrompt: (prompt: string) => void;
+  lyricsOptions: LyricsOptions;
+  setLyricsOptions: (options: LyricsOptions) => void;
+  customThemePrompt: string;
+  setCustomThemePrompt: (prompt: string) => void;
+}
 
+export function LyricsGeneratorForm({ 
+  prompt, 
+  setPrompt, 
+  lyricsOptions, 
+  setLyricsOptions,
+  customThemePrompt,
+  setCustomThemePrompt 
+}: LyricsGeneratorFormProps) {
   const handleLyricsOptionChange = (key: keyof LyricsOptions, value: string | string[]) => {
     setLyricsOptions(prev => ({
         ...prev,
