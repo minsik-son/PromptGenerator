@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"  // PostgreSQL 사용
+  url      = env("DATABASE_URL")
+}
+
+// 사용자 모델
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  prompts       Prompt[]  // 생성한 프롬프트들
+  lyrics        Lyric[]   // 생성한 가사들
+  savedPrompts  SavedPrompt[] // 저장한 프롬프트들
+  savedLyrics   SavedLyric[]  // 저장한 가사들
+}
+
+// 프롬프트 모델
+model Prompt {
+  id        String    @id @default(cuid())
+  content   String    @db.Text
+  createdAt DateTime  @default(now())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  saved     SavedPrompt[]
+}
+
+// 가사 모델
+model Lyric {
+  id        String    @id @default(cuid())
+  content   String    @db.Text
+  createdAt DateTime  @default(now())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  saved     SavedLyric[]
+}
+
+// 저장된 프롬프트 모델
+model SavedPrompt {
+  id        String    @id @default(cuid())
+  promptId  String
+  userId    String
+  savedAt   DateTime  @default(now())
+  prompt    Prompt    @relation(fields: [promptId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
+}
+
+// 저장된 가사 모델
+model SavedLyric {
+  id        String    @id @default(cuid())
+  lyricId   String
+  userId    String
+  savedAt   DateTime  @default(now())
+  lyric     Lyric     @relation(fields: [lyricId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
+} 

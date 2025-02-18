@@ -10,6 +10,15 @@ import Image from 'next/image';
 
 export function Navigation() {
   const [isConnected, setIsConnected] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const handleLogin = () => {
+    setIsLoggedIn(true)
+  }
+
+  const handleLogout = () => {
+    setIsLoggedIn(false)
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -18,7 +27,7 @@ export function Navigation() {
           <div className="mr-4 flex justify-between h-16 items-center">
               <Link href="/" className="flex items-center">
                 <Image 
-                    src="public/PromptAI-logo.png" 
+                    src="/images/PromptAI-logo.png" 
                     alt="Prompt AI Logo"
                     width={40}
                     height={40}
@@ -29,6 +38,7 @@ export function Navigation() {
                 </span>
               </Link>
             </div>
+            {/*
           <nav className="flex items-center space-x-6 text-sm font-medium">
             <Link href="/browse" className="transition-colors hover:text-foreground/80 text-foreground">
               Browse
@@ -43,7 +53,9 @@ export function Navigation() {
               Profile
             </Link>
           </nav>
+          */}
         </div>
+        {/*
         <Sheet>
           <SheetTrigger asChild>
             <Button
@@ -71,7 +83,9 @@ export function Navigation() {
             </nav>
           </SheetContent>
         </Sheet>
+        */}
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+          {/*
           <div className="w-full flex-1 md:w-auto md:flex-none">
             <div className="relative">
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -82,6 +96,18 @@ export function Navigation() {
             <Wallet className="mr-2 h-4 w-4" />
             {isConnected ? "0x1234...5678" : "Connect Wallet"}
           </Button>
+          */}
+         {isLoggedIn ? (
+            <Button variant="outline" className="ml-2" onClick={handleLogout}>
+              Logout
+            </Button>
+          ) : (
+            <Link href="/login">
+              <Button variant="outline" className="ml-2">
+                Login
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </header>

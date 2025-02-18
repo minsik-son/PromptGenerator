@@ -1,24 +1,28 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import type React from "react" // Import React
+import { NextAuthProvider } from "@/components/providers/next-auth-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "AI Prompt Marketplace",
-  description: "Buy and sell AI prompts securely on the blockchain",
-    generator: 'v0.dev'
+  title: "Suno AI Generator",
+  description: "Generate AI prompts and Lyrics for your projects",
+  generator: 'v0.dev'
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <NextAuthProvider>
+          {children}
+        </NextAuthProvider>
+      </body>
     </html>
   )
 }

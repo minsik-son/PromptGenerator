@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 import { OpenAI } from 'openai';
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
+import { prisma } from "@/lib/prisma";
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
@@ -7,26 +10,28 @@ const openai = new OpenAI({
 
 export async function POST(req: Request) {
     try {
+        const session = await getServerSession(authOptions);
         const { keywords, type } = await req.json();
         
         let systemPrompt = '';
         let userPrompt = '';
 
         if (type === 'lyrics') {
+            
             systemPrompt = `You are a professional lyrics generator. Generate lyrics in the exact format below:
 
-TITLE: [Creative song title]
+                            TITLE: [Creative song title]
 
-[Required sections based on user input]
+                            [Required sections based on user input]
 
-Important Rules:
-1. Do NOT include any analysis, process, or explanation
-2. Start directly with "TITLE:" followed by the song sections
-3. If user specifies a structure, strictly follow it
-4. If user specifies a language, write lyrics in that language
-5. Match the specified vocal style and other parameters exactly
-6. Use appropriate rhyme patterns if specified
-7. Adjust length according to user's song length preference`;
+                            Important Rules:
+                            1. Do NOT include any analysis, process, or explanation
+                            2. Start directly with "TITLE:" followed by the song sections
+                            3. If user specifies a structure, strictly follow it
+                            4. If user specifies a language, write lyrics in that language
+                            5. Match the specified vocal style and other parameters exactly
+                            6. Use appropriate rhyme patterns if specified
+                            7. Adjust length according to user's song length preference`;
 
             const params = typeof keywords === 'string' ? JSON.parse(keywords) : keywords;
             
@@ -37,20 +42,20 @@ Important Rules:
                     : "Intro - Verse - Chorus - Verse - Chorus - Outro";
 
             userPrompt = `Generate lyrics with these exact parameters:
-Language: ${params.language || 'English'}
-Structure: ${structure}
-Theme: ${params.theme || 'General'}
-${params.vocalStyle ? `Vocal Style: ${params.vocalStyle}` : ''}
-${params.style ? `Style: ${params.style}` : ''}
-${params.rhymePattern ? `Rhyme Pattern: ${params.rhymePattern}` : ''}
-${params.songLength ? `Song Length: ${params.songLength}` : ''}
+                        Language: ${params.language || 'English'}
+                        Structure: ${structure}
+                        Theme: ${params.theme || 'General'}
+                        ${params.vocalStyle ? `Vocal Style: ${params.vocalStyle}` : ''}
+                        ${params.style ? `Style: ${params.style}` : ''}
+                        ${params.rhymePattern ? `Rhyme Pattern: ${params.rhymePattern}` : ''}
+                        ${params.songLength ? `Song Length: ${params.songLength}` : ''}
 
-Additional Instructions:
-- Write the lyrics EXACTLY in ${params.language || 'English'}
-- Follow this EXACT structure:
-${structure.split(' - ').map(section => `[${section}]`).join('\n')}
-- Theme: ${params.theme}
-- Maintain consistent style and tone throughout`;
+                        Additional Instructions:
+                        - Write the lyrics EXACTLY in ${params.language || 'English'}
+                        - Follow this EXACT structure:
+                        ${structure.split(' - ').map(section => `[${section}]`).join('\n')}
+                        - Theme: ${params.theme}
+                        - Maintain consistent style and tone throughout`;
 
         } else {
             systemPrompt = `You are a music prompt generator. Create a detailed music prompt based on the given description.
@@ -97,6 +102,16 @@ ${structure.split(' - ').map(section => `[${section}]`).join('\n')}
                 lyrics: lyrics.join('\n')
             });
 
+            // 로그인된 사용자인 경우 가사 저장
+            if (session?.user?.id) {
+                await prisma.lyric.create({
+                    data: {
+                        content: lyrics.join('\n'),
+                        userId: session.user.id,
+                    },
+                });
+            }
+
             return NextResponse.json({
                 variations: [{
                     title: title || 'Untitled',
@@ -113,6 +128,16 @@ ${structure.split(' - ').map(section => `[${section}]`).join('\n')}
                         prompt: promptParts.join('\n').replace('PROMPT:', '').trim()
                     };
                 });
+
+            // 로그인된 사용자인 경우 프롬프트 저장
+            if (session?.user?.id) {
+                await prisma.prompt.create({
+                    data: {
+                        content: variations[0].prompt, // 첫 번째 변형만 저장
+                        userId: session.user.id,
+                    },
+                });
+            }
 
             return NextResponse.json({ variations });
         }
