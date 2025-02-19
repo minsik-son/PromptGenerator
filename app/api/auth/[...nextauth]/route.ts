@@ -1,6 +1,6 @@
 import NextAuth, { AuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
-import { prisma } from "@/lib/prisma"
+// import { prisma } from "@/lib/prisma"  // 주석 처리
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -11,40 +11,37 @@ export const authOptions: AuthOptions = {
   ],
   pages: {
     signIn: '/login',
-    signOut: '/login',
+  },
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+      },
+    },
   },
   callbacks: {
     async signIn({ user, account, profile }) {
+      // 기본적인 이메일 확인만 수행
       if (!user.email) return false
-
-      // 사용자가 없으면 생성
-      const dbUser = await prisma.user.upsert({
-        where: { email: user.email },
-        update: {
-          name: user.name,
-          image: user.image,
-        },
-        create: {
-          email: user.email,
-          name: user.name,
-          image: user.image,
-        },
-      })
-
       return true
     },
     async session({ session, token }) {
-      if (session.user?.email) {
-        const dbUser = await prisma.user.findUnique({
-          where: { email: session.user.email },
-        })
-        if (dbUser) {
-          session.user.id = dbUser.id
-        }
-      }
+      // DB 조회 없이 기본 세션 반환
       return session
     },
+    async redirect({ url, baseUrl }) {
+      // 로그인 후 항상 홈페이지로 리다이렉트
+      if (url.startsWith(baseUrl)) {
+        return '/'
+      }
+      return baseUrl
+    },
   },
+  debug: process.env.NODE_ENV === 'development',
 }
 
 const handler = NextAuth(authOptions)

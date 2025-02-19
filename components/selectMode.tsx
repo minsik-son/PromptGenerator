@@ -9,7 +9,8 @@ import GeneratedResult from '@/components/GeneratedResult';
 import type { PromptOptions, LyricsOptions } from '@/app/utils/types';
 import { SunoPromptBuilder } from '@/app/utils/sunoPromptBuilder';
 import { SunoAPI } from '@/app/utils/api';
-
+import { FeaturedPrompts } from '@/components/featured-prompts';
+import { FeaturedLyrics } from '@/components/featured-lyrics';
 
 interface GeneratedItem {
     title: string;
@@ -151,7 +152,7 @@ export function SelectMode() {
         )}
       </div>
 
-      <div className="mt-10 flex items-center justify-center">
+      <div className="mt-10 mb-10 flex items-center justify-center">
 
         <Button
           size="lg"
@@ -174,6 +175,15 @@ export function SelectMode() {
         copyToClipboard={copyToClipboard} 
         copiedIndex={copiedIndex} 
       />
+      <div className="mt-10">
+        {activeTab === 'song' ? (
+          <FeaturedPrompts />
+        ) : (
+          <FeaturedLyrics />
+        )}
+      </div>
+      
+
     </div>
   )
 }

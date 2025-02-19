@@ -3,8 +3,43 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { StarIcon } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
+
+/*
+const featuredPrompts = [
+  {
+    id: 1,
+    title: "Creative Story Generator",
+    description: "Generate engaging short stories with complex characters and plot twists.",
+    price: "0.1 ETH",
+    category: "Creative Writing",
+    rating: 4.8,
+  },
+  {
+    id: 2,
+    title: "SEO Content Optimizer",
+    description: "Create SEO-optimized content that ranks well on search engines.",
+    price: "0.08 ETH",
+    category: "Marketing",
+    rating: 4.9,
+  },
+  {
+    id: 3,
+    title: "Code Refactoring Assistant",
+    description: "Improve your code quality with smart refactoring suggestions.",
+    price: "0.15 ETH",
+    category: "Programming",
+    rating: 4.7,
+  },
+]
+*/
+
+interface FeaturedLyricsProps {
+    copyToClipboard: (text: string, index: number) => void;
+    copiedIndex: number | null;
+}
 
 const featuredPrompts = [
   {
@@ -25,27 +60,9 @@ const featuredPrompts = [
     description: "Create an upbeat Pop song that prominently features dynamic drum beats. The drums should drive the rhythm of the song and add energy and excitement to the overall sound. Experiment with different drum patterns and techniques to create a catchy and danceable track. Incorporate other elements of Pop music such as catchy melodies, colorful synths, and infectious hooks to make the song memorable and engaging.",
     category: "Pop",
   },
-  {
-    id: 4,
-    title: "Melodic Keys",
-    description: "Compose a vibrant J-pop track that prominently features the piano as the main instrument. The piano should provide a catchy and upbeat melody that drives the song forward. Incorporate elements of electronic pop production to enhance the energetic feel of the track. Experiment with various piano techniques, such as arpeggios, trills, and syncopated rhythms to add depth and interest to the music. Infuse the composition with a sense of joy and positivity that is characteristic of J-pop music.",
-    category: "J-pop",
-  },
-  {
-    id: 5,
-    title: "Melodic Keys",
-    description: "Compose a vibrant J-pop track that prominently features the piano as the main instrument. The piano should provide a catchy and upbeat melody that drives the song forward. Incorporate elements of electronic pop production to enhance the energetic feel of the track. Experiment with various piano techniques, such as arpeggios, trills, and syncopated rhythms to add depth and interest to the music. Infuse the composition with a sense of joy and positivity that is characteristic of J-pop music.",
-    category: "J-pop",
-  },
-  {
-    id: 6,
-    title: "Melodic Keys",
-    description: "Compose a vibrant J-pop track that prominently features the piano as the main instrument. The piano should provide a catchy and upbeat melody that drives the song forward. Incorporate elements of electronic pop production to enhance the energetic feel of the track. Experiment with various piano techniques, such as arpeggios, trills, and syncopated rhythms to add depth and interest to the music. Infuse the composition with a sense of joy and positivity that is characteristic of J-pop music.",
-    category: "J-pop",
-  }
 ]
 
-export function FeaturedPrompts() {
+export function FeaturedLyrics() {
   const [copiedId, setCopiedId] = useState<number | null>(null);
 
   const handleCopy = async (text: string, id: number) => {
@@ -66,7 +83,7 @@ export function FeaturedPrompts() {
   return (
     <section className="py-16 px-6">
       <div className="mx-auto max-w-7xl">
-        <h2 className="text-3xl font-bold tracking-tight text-center mb-12">Featured Prompts</h2>
+        <h2 className="text-3xl font-bold tracking-tight text-center mb-12">Featured Lyrics</h2>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {featuredPrompts.map((prompt) => (
             <Card key={prompt.id} className="group relative overflow-hidden transition-all hover:shadow-lg">
@@ -97,3 +114,4 @@ export function FeaturedPrompts() {
     </section>
   )
 }
+

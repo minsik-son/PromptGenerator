@@ -129,6 +129,7 @@ export async function POST(req: Request) {
                     };
                 });
 
+                
             // 로그인된 사용자인 경우 프롬프트 저장
             if (session?.user?.id) {
                 await prisma.prompt.create({

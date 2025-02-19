@@ -19,4 +19,5 @@ export interface LyricsOptions {
     rhymePattern?: string;
     metaphorLevel?: string;
     songLength?: string;
+    instruments?: string[];
 } 

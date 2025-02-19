@@ -33,20 +33,6 @@ const GeneratedResult: React.FC<GeneratedResultProps> = ({ isGenerating, generat
                         <div className="h-2 bg-gray-200 rounded animate-pulse" data-oid="cd-4.-g"></div>
                         <div className="h-2 bg-gray-200 rounded animate-pulse w-3/4" data-oid="z0u4l68"></div>
                     </div>
-                    <div className="flex items-center space-x-4 pt-4" data-oid="g.dguwx">
-                        <button
-                            className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-900 transition-colors text-sm"
-                            data-oid="c1-lq.i"
-                        >
-                            Download
-                        </button>
-                        <button
-                            className="px-4 py-2 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors text-sm"
-                            data-oid="i:dn6fn"
-                        >
-                            Share
-                        </button>
-                    </div>
                 </div>
             ) : (
                 generatedPrompts.length > 0 && (

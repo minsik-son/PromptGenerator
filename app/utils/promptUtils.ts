@@ -101,7 +101,6 @@ export const METAPHOR_LEVELS = [
 ] as const;
 
 export const THEMES = [
-    'Custom',
     'Love & Romance',
     'Heartbreak & Loss',
     'Personal Growth',
@@ -116,7 +115,8 @@ export const THEMES = [
     'Joy & Celebration',
     'Faith & Spirituality',
     'Time & Change',
-    'Freedom & Independence'
+    'Freedom & Independence',
+    'Custom'
 ] as const;
 
 export const SONG_LENGTHS = [
