@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { SongGeneratorForm } from "./generators/SongGeneratorForm"
-import { LyricsGeneratorForm } from "./generators/LyricsGeneratorForm"
+import { LyricsGeneratorFormAdvanced } from "./generators/LyricsGeneratorFormAdvanced"
 import GeneratedResult from '@/components/GeneratedResult';
-import type { PromptOptions, LyricsOptions } from '@/app/utils/types';
+import type { PromptOptions, LyricsOptionsAdvanced } from '@/app/utils/types';
 import { SunoPromptBuilder } from '@/app/utils/sunoPromptBuilder';
 import { SunoAPI } from '@/app/utils/api';
 import { FeaturedPrompts } from '@/components/featured-prompts';
@@ -25,11 +25,20 @@ export function SelectMode() {
   const [generatedPrompts, setGeneratedPrompts] = useState<GeneratedItem[]>([]);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
   const [customThemePrompt, setCustomThemePrompt] = useState(''); // Custom theme 상태 추가
-  const [lyricsOptions, setLyricsOptions] = useState<LyricsOptions>({
-    structure: [], // 빈 배열로 초기화
-    theme: '',
-    language: ''
-});
+  const [lyricsOptions, setLyricsOptions] = useState<LyricsOptionsAdvanced>({
+    theme: '',         // 필수
+    language: '',      // 필수
+    title: '',
+    vocalType: '',
+    vocalEffect: '',
+    genres: '',
+    keys: '',
+    tempos: '',
+    moods: '',
+    structure: [],
+    instruments: [],
+    additionalMeta: ''
+  });
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
@@ -56,7 +65,8 @@ export function SelectMode() {
         if (activeTab === 'lyrics') {
             const finalParams = {
                 ...lyricsOptions,
-                theme: lyricsOptions.theme === 'Custom' ? customThemePrompt : lyricsOptions.theme || prompt
+                theme: lyricsOptions.theme === 'Custom' ? customThemePrompt : lyricsOptions.theme || prompt,
+                title: lyricsOptions.title
             };
             
             console.log('Lyrics Params:', finalParams);
@@ -141,13 +151,15 @@ export function SelectMode() {
             setOptions={setOptions}
           />
         ) : (
-          <LyricsGeneratorForm 
+          <LyricsGeneratorFormAdvanced 
             prompt={prompt}
             setPrompt={setPrompt}
             lyricsOptions={lyricsOptions}
             setLyricsOptions={setLyricsOptions}
             customThemePrompt={customThemePrompt}
             setCustomThemePrompt={setCustomThemePrompt}
+            customTitle={lyricsOptions.title || ''}
+            setCustomTitlePrompt={(newTitle) => setLyricsOptions(prev => ({ ...prev, title: newTitle }))}
           />
         )}
       </div>

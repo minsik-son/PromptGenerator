@@ -53,7 +53,7 @@ export async function POST(req: Request) {
                         Additional Instructions:
                         - Write the lyrics EXACTLY in ${params.language || 'English'}
                         - Follow this EXACT structure:
-                        ${structure.split(' - ').map(section => `[${section}]`).join('\n')}
+                        ${structure.split(' - ').map((section: string) => `[${section}]`).join('\n')}
                         - Theme: ${params.theme}
                         - Maintain consistent style and tone throughout`;
 
@@ -142,7 +142,7 @@ export async function POST(req: Request) {
 
             return NextResponse.json({ variations });
         }
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error generating content:', error);
         console.error('Error details:', {
             message: error.message,

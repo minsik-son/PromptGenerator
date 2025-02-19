@@ -133,6 +133,127 @@ export const SONG_LENGTHS = [
     '360 seconds (6:00)'
 ] as const;
 
+export const INSTRUMENTS = [
+    "Piano", 
+    "Strings", 
+    "Acoustic Guitar", 
+    "Electric Guitar", 
+    "Drums", 
+    "Bass",
+    "Synth", 
+    "Violin", 
+    "Saxophone", 
+    "Trumpet", 
+    "Flute", 
+    "Cello", 
+    "Harp", 
+    "Orchestral Swell"
+  ];
+
+  //New Lyrics Factors
+  export const Vocal_Types = {
+    Female: [
+        "Soprano",
+        "Mezzo-Soprano",
+        "Alto",
+        "Child Vocals",
+        "Rap / Spoken Word"
+    ],
+    Male: [
+        "Tenor",
+        "Baritone",
+        "Bass",
+        "Child Vocals",
+        "Rap / Spoken Word"
+    ],
+    Choir: [
+        "Choir (Mixed Choir)",
+        "Male Choir",
+        "Female Choir",
+        "Children's Choir"
+    ]
+  };
+
+  export const Vocal_Effects = [
+    "Natural Reverb",
+    "Autotune",
+    "Echo",
+    "Distorted",
+    "Soft Whisper",
+    "Powerful Belting",
+    "Warm tone"
+  ];
+
+  export const Genres = [
+    "Pop",
+    "Rock",
+    "Folk / Acoustic",
+    "Hip Hop",
+    "Jazz",
+    "Electronic / EDM",
+    "Classical",
+    "Metal",
+    "Ballad",
+    "J-pop",
+    "K-pop",
+    "Lo-Fi / Chillhop"
+  ];
+
+  export const Keys = {
+    "Major Keys": [
+        "C Major",
+        "C# Major / Db Major",
+        "D Major",
+        "D# Major / Eb Major",
+        "E Major",
+        "F Major",
+        "F# Major / Gb Major",
+        "G Major",
+        "G# Major / Ab Major",
+        "A Major",
+        "A# Major / Bb Major",
+        "B Major"
+    ],
+
+    "Minor Keys": [
+        "A Minor",
+        "A# Minor / Bb Minor",
+        "B Minor",
+        "C Minor",
+        "C# Minor / Db Minor",
+        "D Minor",
+        "D# Minor / Eb Minor",
+        "E Minor",
+        "F Minor",
+        "F# Minor / Gb Minor",
+        "G Minor",
+        "G# Minor / Ab Minor"
+    ]
+  }
+
+  export const Tempos = [
+    "Largo (40-60 BPM)",
+    "Adagio (66-76 BPM)",
+    "Andante (76-108 BPM)",
+    "Moderato (108-120 BPM)",
+    "Allegretto (112-120 BPM)",
+    "Allegro (120-156 BPM)",
+    "Vivace (156-176 BPM)",
+    "Presto (168-200 BPM)"
+];
+
+export const Mood = [
+    "Happy",
+    "Sad",
+    "Romantic",
+    "Energetic",
+    "Melancholic",
+    "Nostalgic",
+    "Mysterious",
+    "Warm"
+];
+  
+
 export function parseDescription(description: string): InferredParams {
     const params: InferredParams = {};
     const keywords = description.toLowerCase();
