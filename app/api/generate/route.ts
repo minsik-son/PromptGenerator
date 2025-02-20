@@ -125,17 +125,13 @@ Ensure **blank lines are maintained between sections** and that **lyrics directl
 
         } else {
             // Song Generator (GPT-3.5-turbo)
-            systemPrompt = `You are a Suno prompt engineer. Create 5 different song prompts, each under 200 characters including spaces and punctuation.
-            Format each prompt as:
-            TITLE: [creative title]
-            PROMPT: [detailed music prompt]`;
+            systemPrompt = `You are a Suno prompt engineer. Create 5 different song prompts, each under 200 characters including spaces and punctuation.`;
             
             userPrompt = `Create 5 unique song prompts based on these elements: ${keywords}
             Rules:
             1. Each prompt must be under 200 characters total
             2. Include genre, mood, and style elements
-            3. Make each prompt distinct and creative
-            4. Format with TITLE: and PROMPT: prefixes`;
+            3. Make each prompt distinct and creative`;
         }
 
         const response = await openai.chat.completions.create({
