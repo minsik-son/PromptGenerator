@@ -37,6 +37,7 @@ export const LYRICS_SECTIONS = [
     'Outro'
 ] as const;
 
+/*
 // 가사 스타일 상수
 export const LYRICS_STYLES = [
     'Narrative',
@@ -46,6 +47,7 @@ export const LYRICS_STYLES = [
     'Direct',
     'Abstract'
 ] as const;
+*/
 
 export const VOCAL_ARRANGEMENTS = [
     'Solo Vocal',
@@ -74,6 +76,7 @@ export const LYRICS_STRUCTURES = [
     'Intro - Verse - Chorus - Bridge - Chorus - Outro'
 ] as const;
 
+/*
 export const REPETITION_STYLES = [
     'High Chorus Repetition',
     'Moderate Repetition',
@@ -99,6 +102,7 @@ export const METAPHOR_LEVELS = [
     'Mixed (Metaphoric & Direct)',
     'Abstract Imagery'
 ] as const;
+*/
 
 export const THEMES = [
     'Love & Romance',
@@ -119,6 +123,7 @@ export const THEMES = [
     'Custom'
 ] as const;
 
+/*
 export const SONG_LENGTHS = [
     '60 seconds (1:00)',
     '90 seconds (1:30)',
@@ -132,7 +137,7 @@ export const SONG_LENGTHS = [
     '330 seconds (5:30)',
     '360 seconds (6:00)'
 ] as const;
-
+*/
 export const INSTRUMENTS = [
     "Piano", 
     "Strings", 
