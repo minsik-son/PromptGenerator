@@ -66,7 +66,7 @@ Your task is to generate a **well-formatted**, **naturally flowing** song, integ
 ### **Example Output Format**
 \`\`\`
 Title of the Song  
-<br><br>
+<br>
 [Genre] [Key] [BPM] [Vocal Effect]  
 <br>
 [Intro] [Soft Piano, Echoing Melody]   
