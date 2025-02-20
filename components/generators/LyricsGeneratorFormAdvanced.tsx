@@ -4,10 +4,14 @@ import { useState } from 'react';
 import type { LyricsOptionsAdvanced } from '@/app/utils/types';
 import { LYRICS_STRUCTURES, THEMES, INSTRUMENTS, Vocal_Types, Vocal_Effects, Genres, Keys, Tempos, Mood } from '@/app/utils/promptUtils';
 
-const lyricsSelectClass = `mt-1 block rounded-lg border-2 border-gray-200 bg-white shadow-sm 
+const lyricsSelectClass = `appearance-none mt-1 block rounded-lg border-2 border-gray-200 bg-white shadow-sm 
   focus:border-black focus:ring-1 focus:ring-black transition-colors cursor-pointer
-  [&>*]:py-2 [&>*]:px-4 [&>*]:bg-white hover:[&>*]:bg-gray-50/50 lyrics-select md:w-[250px]`;
+  [&>*]:py-2 [&>*]:px-4 [&>*]:bg-white hover:[&>*]:bg-gray-50/50 lyrics-select w-[350px] h-[40px] md:w-[250px] md:h-[34px] pl-3`;
 
+
+const checkBoxClass = `appearance-none mt-1 block rounded-lg border-2 border-gray-200 bg-white shadow-sm 
+  focus:border-black focus:ring-1 focus:ring-black transition-colors cursor-pointer
+  [&>*]:bg-white hover:[&>*]:bg-gray-50/50 lyrics-select w-[350px] h-[40px] md:w-[250px] md:h-[34px] pl-3`;
 
 interface LyricsGeneratorFormProps {
   prompt: string;
@@ -36,9 +40,11 @@ export function LyricsGeneratorFormAdvanced({
   const [titleText, setTitleText] = useState('');
 
   const handleLyricsOptionChange = (key: keyof LyricsOptionsAdvanced, value: string | string[]) => {
-    setLyricsOptions((prev: LyricsOptionsAdvanced) => ({
-      ...prev,
-      [key]: value
+    setLyricsOptions((prev: LyricsOptionsAdvanced): LyricsOptionsAdvanced => ({
+        ...prev,
+        [key]: value,
+        theme: prev.theme || '',    // 필수 필드에 기본값 설정
+        language: prev.language || '' // 필수 필드에 기본값 설정
     }));
   };
 
@@ -63,7 +69,7 @@ export function LyricsGeneratorFormAdvanced({
 
   return (
     <div className="max-w-3xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-x-8">
+      <div className="grid grid-cols-1 place-items-center md:grid-cols-2 gap-4 md:gap-x-8">
 
         <div className="select-container">
             <span className="text-sm font-light text-gray-700 mb-2 block">
@@ -116,6 +122,7 @@ export function LyricsGeneratorFormAdvanced({
                 </div>
             )}
         </div>
+
         <div className="select-container">
             <span className="text-sm font-light text-gray-700 mb-2 block">
                 Language <span className="text-red-500">*</span>
@@ -142,7 +149,7 @@ export function LyricsGeneratorFormAdvanced({
             </select>
         </div>
 
-        <div className="mb-1">
+        <div className="select-container">
             <span className="text-sm font-light text-gray-700 mb-2 block">Vocal Type</span>
             <select
                 className={lyricsSelectClass}
@@ -160,7 +167,7 @@ export function LyricsGeneratorFormAdvanced({
             </select>
         </div>
 
-        <div className="mb-1">
+        <div className="select-container">
             <span className="text-sm font-light text-gray-700 mb-2 block">Vocal Effect</span>
             <select
                 className={lyricsSelectClass}
@@ -174,7 +181,7 @@ export function LyricsGeneratorFormAdvanced({
             </select>
         </div>
 
-        <div className="mb-1">
+        <div className="select-container">
             <span className="text-sm font-light text-gray-700 mb-2 block">Song Structure</span>
             <select
                 className={lyricsSelectClass}
@@ -188,7 +195,7 @@ export function LyricsGeneratorFormAdvanced({
             </select>
         </div>
 
-        <div className="mb-1">
+        <div className="select-container">
             <span className="text-sm font-light text-gray-700 mb-2 block">Genre</span>
             <select
                 className={lyricsSelectClass}
@@ -202,7 +209,7 @@ export function LyricsGeneratorFormAdvanced({
             </select>
         </div>
         
-        <div className="mb-1">
+        <div className="select-container">
             <span className="text-sm font-light text-gray-700 mb-2 block">Keys</span>
             <select
                 className={lyricsSelectClass}
@@ -220,7 +227,7 @@ export function LyricsGeneratorFormAdvanced({
             </select>
         </div>
 
-        <div className="mb-1">
+        <div className="select-container">
             <span className="text-sm font-light text-gray-700 mb-2 block">Tempos</span>
             <select
                 className={lyricsSelectClass}
@@ -234,7 +241,7 @@ export function LyricsGeneratorFormAdvanced({
             </select>
         </div>
 
-        <div className="mb-1">
+        <div className="select-container">
             <span className="text-sm font-light text-gray-700 mb-2 block">Moods</span>
             <select
                 className={lyricsSelectClass}
@@ -247,25 +254,28 @@ export function LyricsGeneratorFormAdvanced({
                 ))}
             </select>
         </div>
-        {/**악기 추가 */}
-        <div className="mb-1">
-          <span className="text-sm font-light text-gray-700 mb-2 block">Instruments</span>
+
+        <div className="select-container flex flex-col items-center w-full">
+          {/* Instruments 제목 - 왼쪽 정렬 */}
+          <span className="text-sm font-light text-gray-700 block w-[350px] h-[40px] md:w-[250px] md:h-[34px] text-left">
+            Instruments
+          </span>
+
+          {/* Instruments 선택 버튼 - 중앙 정렬 유지 */}
           <div 
-            className={lyricsSelectClass + " cursor-pointer"}
+            className={checkBoxClass + " cursor-pointer w-full"}
             onClick={() => setShowInstruments(!showInstruments)}
           >
-            <div className="flex justify-between items-center py-2 px-4">
-              <span className="truncate">
-                {getSelectedInstrumentsText(selectedInstruments)}
-              </span>
-              <span>{showInstruments ? '▲' : '▼'}</span>
+            <div className="flex justify-between items-center w-full">
+              <span className="truncate">{getSelectedInstrumentsText(selectedInstruments)}</span>
+              <span className="mr-2 my-auto">{showInstruments ? '▲' : '▼'}</span>
             </div>
           </div>
-          
-          {/* 악기 체크박스 목록 */}
-          {showInstruments && (
-            <div className="mt-2 p-4 border-2 border-gray-200 rounded-lg bg-white shadow-sm">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+
+          {/* 악기 체크박스 목록 (부모를 기준으로 정렬 유지) */}
+          {showInstruments && (            
+            <div className="relative flex flex-col items-center w-full min-w-[200px] md:w-[350px] mt-2 p-4 border-2 border-gray-200 rounded-lg bg-white shadow-lg">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
                 {INSTRUMENTS.map((instrument) => (
                   <label 
                     key={instrument} 
@@ -284,19 +294,28 @@ export function LyricsGeneratorFormAdvanced({
             </div>
           )}
         </div>
-      </div>
 
+
+
+      </div>
       <div className="flex justify-center mb-1 w-full">
-        <div className="w-full md:w-[825px]">
-          <span className="text-sm font-light text-gray-700 mt-10 mb-2 block">Additional Details</span>
+        {/* 부모 컨테이너: 중앙 정렬을 위해 mx-auto 추가 */}
+        <div className="w-full md:w-[825px] mx-auto flex flex-col items-center">
+          <span className="text-sm font-light text-gray-700 mt-10 mb-2 block">
+            Additional Details
+          </span>
+          
+          {/* textarea: block과 mx-auto 추가하여 완전 중앙 정렬 */}
           <textarea
-            className="w-full h-32 rounded-lg border-2 border-gray-200 hover:border-gray-300 focus:border-black focus:ring-1 focus:ring-black p-4 shadow-sm transition-colors placeholder-gray-400 resize-none"
+            className="block mx-auto w-[300px] md:w-full h-32 rounded-lg border-2 border-gray-200 hover:border-gray-300 
+            focus:border-black focus:ring-1 focus:ring-black p-4 shadow-sm transition-colors placeholder-gray-400 resize-none"
             placeholder="Please describe any additional details you'd like to include..."
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           />
         </div>
       </div>
+
     </div>
   );
 }

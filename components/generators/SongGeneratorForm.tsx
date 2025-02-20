@@ -2,9 +2,9 @@
 import { useState } from 'react';
 import type { PromptOptions } from '@/app/utils/types';
 
-const songSelectClass = `mt-1 block rounded-lg border-2 border-gray-200 bg-white shadow-sm 
-focus:border-black focus:ring-1 focus:ring-black transition-colors cursor-pointer
-[&>*]:py-2 [&>*]:px-4 [&>*]:bg-white hover:[&>*]:bg-gray-50/50 song-select md:w-[250px]`;
+const songSelectClass = `appearance-none mt-1 block rounded-lg border-2 border-gray-200 bg-white shadow-sm 
+  focus:border-black focus:ring-1 focus:ring-black transition-colors cursor-pointer
+  [&>*]:py-2 [&>*]:px-4 [&>*]:bg-white hover:[&>*]:bg-gray-50/50 lyrics-select w-[350px] h-[40px] md:w-[250px] md:h-[34px] pl-3`;
 
 interface SongGeneratorFormProps {
   prompt: string;
@@ -51,7 +51,7 @@ export function SongGeneratorForm({ prompt, setPrompt, options, setOptions }: So
       </div>
 
       <div className="max-w-3xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-x-8">
+        <div className="grid grid-cols-1 place-items-center md:grid-cols-2 gap-4 md:gap-x-8">
             <div className="select-container">
               <span className="text-sm font-light text-gray-700">Genre</span>
               <select
