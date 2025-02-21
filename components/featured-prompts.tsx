@@ -9,39 +9,39 @@ import { toast } from "sonner"
 const featuredPrompts = [
   {
     id: 1,
-    title: "Melodic Keys",
-    description: "Compose a vibrant J-pop track that prominently features the piano as the main instrument. The piano should provide a catchy and upbeat melody that drives the song forward. Incorporate elements of electronic pop production to enhance the energetic feel of the track. Experiment with various piano techniques, such as arpeggios, trills, and syncopated rhythms to add depth and interest to the music. Infuse the composition with a sense of joy and positivity that is characteristic of J-pop music.",
-    category: "J-pop",
-  },
-  {
-    id: 2,
-    title: "Electric Keys Fusion",
-    description: "Create an EDM track that seamlessly blends electronic beats and synths with the rich, emotive sounds of a cello. Use the cello to introduce a melodic motif that carries throughout the song, adding depth and emotion to the energetic electronic production. Experiment with different effects and techniques to showcase the versatility of the cello in an EDM setting. Consider incorporating both pizzicato and bowing techniques to create dynamic contrast and texture in the track. The goal is to create a captivating and innovative fusion of classical and electronic music that showcases the beauty and versatility of the cello in a modern context.",
-    category: "EDM",
-  },
-  {
-    id: 3,
-    title: "Rhythm pop",
-    description: "Create an upbeat Pop song that prominently features dynamic drum beats. The drums should drive the rhythm of the song and add energy and excitement to the overall sound. Experiment with different drum patterns and techniques to create a catchy and danceable track. Incorporate other elements of Pop music such as catchy melodies, colorful synths, and infectious hooks to make the song memorable and engaging.",
+    title: "Electric Ecstasy",
+    description: "Craft an electrifying pop masterpiece with female vocals, pulsating energy, and an allegretto tempo that sparks a euphoric and lively atmosphere.",
     category: "Pop",
   },
   {
+    id: 2,
+    title: "Electric Echoes",
+    description: "Develop a lively dance & electronic piece with male vocals, characterized by dynamic synths and a vibrant mood at an allegretto pace of 112-120 BPM.",
+    category: "Dance & Electronic",
+  },
+  {
+    id: 3,
+    title: "Rebel Roar",
+    description: "Produce a fusion of funk and hard rock elements, creating a groovy and rebellious track that makes listeners move and headbang in unison.",
+    category: "Rock",
+  },
+  {
     id: 4,
-    title: "Melodic Keys",
-    description: "Compose a vibrant J-pop track that prominently features the piano as the main instrument. The piano should provide a catchy and upbeat melody that drives the song forward. Incorporate elements of electronic pop production to enhance the energetic feel of the track. Experiment with various piano techniques, such as arpeggios, trills, and syncopated rhythms to add depth and interest to the music. Infuse the composition with a sense of joy and positivity that is characteristic of J-pop music.",
-    category: "J-pop",
+    title: "Street Symphony",
+    description: "Create a nostalgic boom-bap hip hop track inspired by the classic 90s sound, featuring vinyl scratches and soulful samples.",
+    category: "Hip Hop",
   },
   {
     id: 5,
-    title: "Melodic Keys",
-    description: "Compose a vibrant J-pop track that prominently features the piano as the main instrument. The piano should provide a catchy and upbeat melody that drives the song forward. Incorporate elements of electronic pop production to enhance the energetic feel of the track. Experiment with various piano techniques, such as arpeggios, trills, and syncopated rhythms to add depth and interest to the music. Infuse the composition with a sense of joy and positivity that is characteristic of J-pop music.",
+    title: "Cherry Blossom Harmony",
+    description: "Design a colorful J-pop song enriched with dynamic piano notes, accompanied by the sweet serenade of a female singer, radiating positivity and cheerfulness.",
     category: "J-pop",
   },
   {
     id: 6,
-    title: "Melodic Keys",
-    description: "Compose a vibrant J-pop track that prominently features the piano as the main instrument. The piano should provide a catchy and upbeat melody that drives the song forward. Incorporate elements of electronic pop production to enhance the energetic feel of the track. Experiment with various piano techniques, such as arpeggios, trills, and syncopated rhythms to add depth and interest to the music. Infuse the composition with a sense of joy and positivity that is characteristic of J-pop music.",
-    category: "J-pop",
+    title: "Midnight Whispers",
+    description: "Produce an atmospheric R&B piece with male vocals, ethereal synths, and intimate lyrics evoking a sense of mystery and longing.",
+    category: "R&B",
   }
 ]
 

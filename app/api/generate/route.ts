@@ -118,33 +118,36 @@ export async function POST(req: Request) {
 
         } else {
             // Song Generator (GPT-3.5-turbo)
-            systemPrompt = `You are a Suno prompt engineer. Create 5 different song prompts, each under 200 characters including spaces and punctuation.Return the result in JSON format, mapping 5 titles with 5 prompts.
+            systemPrompt = `You are a Suno prompt engineer. Create 5 different song prompts, each between 150 and 200 characters, including spaces and punctuation.
+            Return the result in JSON format, mapping 5 titles with 5 prompts.
+            Make your own creative titles.
+            Do not include any other parameters as result.
             ### **Example Output Format**
             {
                 "results": [
                     {
-                    "title": "Dreamy Night Sky",
+                    "title": "Espresso",
                     "prompt": "Generate an ambient lo-fi track with a relaxing night sky atmosphere."
                     },
                     {
-                    "title": "Epic Battle Theme",
+                    "title": "Poker Face",
                     "prompt": "Create an intense orchestral piece suitable for a heroic battle scene."
                     },
                     {
-                    "title": "Chill Summer Vibes",
+                    "title": "Padam Padam",
                     "prompt": "Produce a smooth jazz track with tropical instruments for a summer evening."
                     },
                     {
-                    "title": "Cyberpunk City Lights",
+                    "title": "Call Me Maybe",
                     "prompt": "Compose an energetic synthwave track inspired by a futuristic cyberpunk city."
                     },
                     {
-                    "title": "Emotional Piano Ballad",
+                    "title": "Wildflower",
                     "prompt": "Create a heartfelt piano composition with a melancholic yet uplifting progression."
                     }
                 ]
             }
-
+            Do not include any other text or comments
             `;
             
             userPrompt = `Create 5 unique song prompts based on these elements: ${keywords}
