@@ -40,11 +40,9 @@ export function LyricsGeneratorFormAdvanced({
   const [titleText, setTitleText] = useState('');
 
   const handleLyricsOptionChange = (key: keyof LyricsOptionsAdvanced, value: string | string[]) => {
-    setLyricsOptions((prev: LyricsOptionsAdvanced): LyricsOptionsAdvanced => ({
-        ...prev,
-        [key]: value,
-        theme: prev.theme || '',    // 필수 필드에 기본값 설정
-        language: prev.language || '' // 필수 필드에 기본값 설정
+    setLyricsOptions((prev: LyricsOptionsAdvanced) => ({
+      ...prev,
+      [key]: value
     }));
   };
 

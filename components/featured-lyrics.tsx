@@ -108,70 +108,64 @@ const featuredPrompts = [
   },
   {
     id: 2,
-    title: "Stimmen der Veränderung",
+    title: "Chasing Stars",
     description: `
-    [Rock] [E Minor] [130 BPM] [None]
-    \n
-    [Intro] [E-Gitarre, Bassgitarre]
-    Ein starker Anschlag auf die E-Gitarre, gefolgt vom knurrenden tiefen Ton der Bassgitarre beginnt das Lied.
-    \n
-    [Verse 1] [Männlicher Bariton] [E-Gitarre, Bassgitarre, Schlagzeug]
-    In den Straßen der Städte, in den Augen der jungen,
-    Sieht man den Wunsch, den Wunsch nach Veränderung.
-    Der Lärm der Leidenschaft, der Klang der Rebellion,
-    Dröhnt durch die Luft, die Stimmen der Veränderung.
-    \n
-    [Pre-Chorus] [Steigende Intensität, Schlagzeug wird stärker]
-    Wir sind mehr als nur Zahlen, mehr als nur Gesichter,
-    Wir sind die Stimmen, die Stimmen der Veränderung.
-    \n
-    [Chorus] [Männlicher Bariton, Chor (Gemischt), Vollband]
-    Stimmen der Veränderung, wir lassen uns nicht brechen,
-    Gemeinsam stehen wir auf, lassen das System erbeben.
-    Stimmen der Veränderung, wir sind nicht mehr zu übersehen,
-    Hören Sie uns jetzt, wir sind die Stimmen der Veränderung.
-    \n
-    [Verse 2] [Männlicher Bariton] [E-Gitarre, Bassgitarre, Schlagzeug]
-    Unser Schrei wird lauter, unsere Forderungen klarer,
-    Wir sind die Jugend, die Stimmen der Veränderung.
-    Mit jedem Tag, mit jedem Schritt,
-    Wachsen wir stärker, die Stimmen der Veränderung.
-    \n
-    [Pre-Chorus] [Steigende Intensität, Schlagzeug wird stärker]
-    Wir sind nicht nur Träumer, wir sind Macher,
-    Wir sind die Stimmen, die Stimmen der Veränderung.
-    \n
-    [Chorus] [Männlicher Bariton, Chor (Gemischt), Vollband]
-    Stimmen der Veränderung, wir lassen uns nicht brechen,
-    Gemeinsam stehen wir auf, lassen das System erbeben.
-    Stimmen der Veränderung, wir sind nicht mehr zu übersehen,
-    Hören Sie uns jetzt, wir sind die Stimmen der Veränderung.
-    \n
-    [Bridge] [Verlangsamtes Tempo, Gefühlswechsel] [Akustikgitarre, Leichte Schlagzeugunterstützung]
-    In der Stille der Nacht, in der Ruhe vor dem Sturm,
-    Hören wir uns selbst, die Stimmen der Veränderung.
-    Mit Hoffnung in unseren Herzen, mit Mut in unseren Seelen,
-    Werden wir weiterkämpfen, als Stimmen der Veränderung.
-    \n
-    [Chorus] [Männlicher Bariton, Chor (Gemischt), Vollband]
-    Stimmen der Veränderung, wir lassen uns nicht brechen,
-    Gemeinsam stehen wir auf, lassen das System erbeben.
-    Stimmen der Veränderung, wir sind nicht mehr zu übersehen,
-    Hören Sie uns jetzt, wir sind die Stimmen der Veränderung.
-    \n
-    [Outro] [Fading Melodie, Echoing Vocals] [E-Gitarre Solo, Bassgitarre, Schlagzeug]
-    Bis zum letzten Atemzug, bis zum letzten Schlag,
-    Werden wir nicht aufhören, die Stimmen der Veränderung zu sein.
-    Die Musik verblasst, aber unser Echo bleibt,
-    Wir sind die Stimmen, die Stimmen der Veränderung.
-    `,
-    category: "Rock",
+                [POP] [G Major] [128 BPM] 
+                \n
+                [Intro] [Soft Synth Pad, Gentle Bell Sounds]  
+                \n
+                [Verse 1] [Female Soprano] [Acoustic Guitar & Light Percussion]  
+                In the quiet of the night, where the dreams take flight,  
+                I close my eyes, let the whispers guide my sight.  
+                Every heartbeat's echo, a step toward the light,  
+                A canvas unpainted, waiting for my might.  
+                \n
+                [Chorus] [Choir (Mixed), Full Band]  
+                Oh, I’m chasing stars, reaching high and far,  
+                With every distant spark, I know just who we are.  
+                Together we'll rise, beyond the endless skies,  
+                In the dance of our dreams, we’ll find our paradise.  
+                \n
+                [Verse 2] [Female Soprano] [Piano & Strings]  
+                Through the storms and shadows, I’ll hold on to my fire,  
+                Every trial faced, fuels this deep desire.  
+                When the world feels heavy, and it all seems lost,  
+                I’ll remember the vision, and I’ll pay the cost.  
+                \n
+                [Pre-Chorus] [Building Energy, Drums Enter]  
+                So take my hand, let’s break the chains tonight,  
+                We’ll pave our own way, with courage as our light.  
+                \n
+                [Chorus] [Choir (Mixed), Full Band]  
+                Oh, I’m chasing stars, reaching high and far,  
+                With every distant spark, I know just who we are.  
+                Together we'll rise, beyond the endless skies,  
+                In the dance of our dreams, we’ll find our paradise.  
+                \n
+                [Bridge] [Slower Tempo, Emotional Shift]  
+                And when the night is dark, I’ll find my way,  
+                Through the doubts and fears, I’ll never sway.  
+                With each step forward, I’ll hear the call,  
+                In the journey of our hearts, we’ll conquer all.  
+                \n
+                [Chorus] [Even More Powerful, Full Band with Brass]  
+                Oh, I’m chasing stars, reaching high and far,  
+                With every distant spark, I know just who we are.  
+                Together we'll rise, beyond the endless skies,  
+                In the dance of our dreams, we’ll find our paradise.  
+                \n
+                [Outro] [Fading Melody, Echoing Vocals]  
+                So here we stand, with our dreams in hand,  
+                Chasing stars forever, together we will stand.  
+                In the glow of the night, we’ll light the way,  
+                With hope as our guide, we’ll seize the day.`,
+    category: "Pop",
   },
   {
     id: 3,
     title: "Sueños de Papel",
     description: `
-    [Pop] [D Major] [115 BPM] [None]
+    [Pop] [D Major] [115 BPM]
     \n
     [Verse 1] [Female Soprano] [Acoustic Guitar & Light Percussion]
     En un mundo de papel y tinta,
@@ -262,13 +256,13 @@ export function FeaturedLyrics() {
                 <Button
                   onClick={() => handleCopy(prompt.description, prompt.id)}
                 >
-                  {copiedId === prompt.id ? "복사됨!" : "복사"}
+                  {copiedId === prompt.id ? "Copied!" : "Copy"}
                 </Button>
                 <Button
                   variant="outline"
                   onClick={() => setExpandedId(expandedId === prompt.id ? null : prompt.id)}
                 >
-                  {expandedId === prompt.id ? "접기" : "더 보기"}
+                  {expandedId === prompt.id ? "Hide" : "More"}
                 </Button>
               </CardFooter>
             </Card>
