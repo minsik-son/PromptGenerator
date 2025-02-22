@@ -33,8 +33,8 @@ export function SongGeneratorForm({ prompt, setPrompt, options, setOptions }: So
   };
 
   return (
-    <div className="max-w-3xl mx-auto space-y-8">
-      <div className="mb-12">
+    <div className="max-w-3xl space-y-8 mx-auto">
+      <div className="mb-12 mx-auto w-[80%] max-w-xl">
         <textarea
           className="w-full h-32 rounded-xl border-2 border-gray-200 hover:border-gray-300 focus:border-black focus:ring-1 focus:ring-black text-lg p-4 shadow-sm transition-all duration-200 placeholder-gray-400 resize-none"
           placeholder="✨ Describe the song you want to create..."

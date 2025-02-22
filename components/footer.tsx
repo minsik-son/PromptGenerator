@@ -1,3 +1,59 @@
+"use client";
+
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { Github, Twitter, Mail ,DiscIcon as Discord } from "lucide-react"
+
+export function Footer() {
+  return (
+    <footer className="border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container py-2">
+        <div className="grid grid-cols-1 gap-8 place-items-center grid-cols-2">
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-center">About</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground">
+                  About Us
+                </Link>
+              </li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-center">Connect</h3>
+            <div className="flex space-x-4">
+              <Button 
+                onClick={() => window.open('mailto:ai.prompt.gene@gmail.com', '_blank')}
+                variant="ghost" 
+                size="icon">
+                <Mail className="h-4 w-4" />
+              </Button>
+              <Button 
+                onClick={() => window.open('https://github.com/Prompt-AI-Pro', '_blank')}
+                variant="ghost" 
+                size="icon">
+                <Github className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="mt-1 border-t pt-2 text-center">
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Prompt AI.
+          </p>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+
+
+
+
+
+/*  기존 Footer 컴포넌트 코드
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Github, Twitter, DiscIcon as Discord } from "lucide-react"
@@ -87,3 +143,4 @@ export function Footer() {
   )
 }
 
+*/

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { LyricsOptionsAdvanced } from '@/app/utils/types';
 import { LYRICS_STRUCTURES, THEMES, INSTRUMENTS, Vocal_Types, Vocal_Effects, Genres, Keys, Tempos, Mood } from '@/app/utils/promptUtils';
 
@@ -38,8 +38,46 @@ export function LyricsGeneratorFormAdvanced({
   const [showInstruments, setShowInstruments] = useState(false);
   const [showTitleInput, setShowTitleInput] = useState(false);
   const [titleText, setTitleText] = useState('');
+  const [displayOptions, setDisplayOptions] = useState<Partial<LyricsOptionsAdvanced>>({});
+
+  const getRandomOption = (options: string[]) => {
+    return options[Math.floor(Math.random() * options.length)];
+  };
 
   const handleLyricsOptionChange = (key: keyof LyricsOptionsAdvanced, value: string | string[]) => {
+    if (key === 'hasTitle' && value === 'No') {
+      setCustomTitlePrompt('');
+    }
+    if (value === 'Random') {
+      switch (key) {
+        case 'theme':
+          value = getRandomOption(THEMES.filter(t => t !== 'Custom'));
+          break;
+        case 'structure':
+          value = getRandomOption(Array.from(LYRICS_STRUCTURES));
+          break;
+        case 'vocalType':
+          value = getRandomOption(Object.values(Vocal_Types).flat());
+          break;
+        case 'vocalEffect':
+          value = getRandomOption(Vocal_Effects);
+          break;
+        case 'genres':
+          value = getRandomOption(Genres);
+          break;
+        case 'keys':
+          value = getRandomOption(Object.values(Keys).flat());
+          break;
+        case 'tempos':
+          value = getRandomOption(Tempos);
+          break;
+        case 'moods':
+          value = getRandomOption(Mood);
+          break;
+        default:
+          break;
+      }
+    }
     setLyricsOptions((prev: LyricsOptionsAdvanced) => ({
       ...prev,
       [key]: value
@@ -65,8 +103,69 @@ export function LyricsGeneratorFormAdvanced({
     return `${instruments[0]}, ${instruments[1]} +${instruments.length - 2}`;
   };
 
+  useEffect(() => {
+    const initialOptions: Partial<LyricsOptionsAdvanced> = {};
+    
+    // 필수 필드에 대한 초기 Random 값 설정
+    if (!lyricsOptions.theme) {
+        initialOptions.theme = getRandomOption(THEMES.filter(t => t !== 'Custom'));
+        setDisplayOptions(prev => ({ ...prev, theme: 'Random' }));
+
+    }
+    if (!lyricsOptions.language) {
+        initialOptions.language = 'English'; // 기본값
+    }
+    
+    // 선택적 필드에 대한 초기 Random 값 설정
+    if (!lyricsOptions.structure || (Array.isArray(lyricsOptions.structure) && lyricsOptions.structure.length === 0)) {
+      initialOptions.structure = [getRandomOption(Array.from(LYRICS_STRUCTURES))];
+      setDisplayOptions(prev => ({ ...prev, structure: 'Random' }));
+    }
+    if (!lyricsOptions.vocalType) {
+        initialOptions.vocalType = getRandomOption(Object.values(Vocal_Types).flat());
+        setDisplayOptions(prev => ({ ...prev, vocalType: 'Random' }));
+    }
+    if (!lyricsOptions.vocalEffect) {
+        initialOptions.vocalEffect = getRandomOption(Vocal_Effects);
+        setDisplayOptions(prev => ({ ...prev, vocalEffect: 'Random' }));
+    }
+    if (!lyricsOptions.genres) {
+        initialOptions.genres = getRandomOption(Genres);
+        setDisplayOptions(prev => ({ ...prev, genres: 'Random' }));
+    }
+    if (!lyricsOptions.keys) {
+        initialOptions.keys = getRandomOption(Object.values(Keys).flat());
+        setDisplayOptions(prev => ({ ...prev, keys: 'Random' }));
+    }
+    if (!lyricsOptions.tempos) {
+        initialOptions.tempos = getRandomOption(Tempos);
+        setDisplayOptions(prev => ({ ...prev, tempos: 'Random' }));
+    }
+    if (!lyricsOptions.moods) {
+        initialOptions.moods = getRandomOption(Mood);
+        setDisplayOptions(prev => ({ ...prev, moods: 'Random' }));
+    }
+    
+
+    // 초기값이 있는 경우에만 상태 업데이트
+    if (Object.keys(initialOptions).length > 0) {
+        setLyricsOptions(prev => ({
+            ...prev,
+            ...initialOptions
+        }));
+    }
+  }, []); // 컴포넌트 마운트 시 1회만 실행
+
   return (
     <div className="max-w-3xl mx-auto">
+      <div className="my-20 items-center text-center">
+        <span className="block text-sm text-gray-500 mt-4 text-center">
+          Options are set to random values by default
+        </span>
+        <span className="block text-sm text-gray-500 mt-4 text-center">
+          Please adjust them carefully to apply the desired style of metatags
+        </span>
+      </div>
       <div className="grid grid-cols-1 place-items-center md:grid-cols-2 gap-4 md:gap-x-8">
 
         <div className="select-container">
@@ -100,9 +199,9 @@ export function LyricsGeneratorFormAdvanced({
             <select
                 className={lyricsSelectClass}
                 onChange={(e) => handleLyricsOptionChange('theme', e.target.value)}
-                value={lyricsOptions.theme || ''}
+                value={displayOptions.theme || 'Random'}
             >
-                <option value="">Select Theme</option>
+                <option value="Random">Random</option>
                 {THEMES.map(theme => (
                     <option key={theme} value={theme === 'Custom' ? 'Custom' : theme}>
                         {theme}
@@ -128,9 +227,8 @@ export function LyricsGeneratorFormAdvanced({
             <select
                 className={lyricsSelectClass}
                 onChange={(e) => handleLyricsOptionChange('language', e.target.value)}
-                value={lyricsOptions.language || ''}
+                value={lyricsOptions.language || 'English'}
             >
-                <option value="">Select Language</option>
                 <option value="English">English (English)</option>
                 <option value="Korean">Korean (한국어)</option>
                 <option value="Japanese">Japanese (日本語)</option>
@@ -152,9 +250,9 @@ export function LyricsGeneratorFormAdvanced({
             <select
                 className={lyricsSelectClass}
                 onChange={(e) => handleLyricsOptionChange('vocalType', e.target.value)}
-                value={lyricsOptions.vocalType || ''}
+                value={displayOptions.vocalType || 'Random'}
             >
-                <option value="">Select Vocal Type</option>
+                <option value="Random">Random</option>
                 {Object.entries(Vocal_Types).map(([type, styles]) => (
                     <optgroup key={type} label={type}>
                         {styles.map(style => (
@@ -170,9 +268,9 @@ export function LyricsGeneratorFormAdvanced({
             <select
                 className={lyricsSelectClass}
                 onChange={(e) => handleLyricsOptionChange('vocalEffect', e.target.value)}
-                value={lyricsOptions.vocalEffect || ''}
+                value={displayOptions.vocalEffect || 'Random'}
             >
-                <option value="">Select Style</option>
+                <option value="Random">Random</option>
                 {Vocal_Effects.map(style => (
                     <option key={style} value={style}>{style}</option>
                 ))}
@@ -184,9 +282,9 @@ export function LyricsGeneratorFormAdvanced({
             <select
                 className={lyricsSelectClass}
                 onChange={(e) => handleLyricsOptionChange('structure', e.target.value)}
-                value={lyricsOptions.structure || ''}
+                value={displayOptions.structure || 'Random'}
             >
-                <option value="">Select Structure</option>
+                <option value="Random">Random</option>
                 {LYRICS_STRUCTURES.map(structure => (
                     <option key={structure} value={structure}>{structure}</option>
                 ))}
@@ -198,9 +296,9 @@ export function LyricsGeneratorFormAdvanced({
             <select
                 className={lyricsSelectClass}
                 onChange={(e) => handleLyricsOptionChange('genres', e.target.value)}
-                value={lyricsOptions.genres || ''}
+                value={displayOptions.genres || 'Random'}
             >
-                <option value="">Select Repetition Style</option>
+                <option value="Random">Random</option>
                 {Genres.map(style => (
                     <option key={style} value={style}>{style}</option>
                 ))}
@@ -212,9 +310,9 @@ export function LyricsGeneratorFormAdvanced({
             <select
                 className={lyricsSelectClass}
                 onChange={(e) => handleLyricsOptionChange('keys', e.target.value)}
-                value={lyricsOptions.keys || ''}
+                value={displayOptions.keys || 'Random'}
             >
-                <option value="">Select Vocal Type</option>
+                <option value="Random">Random</option>
                 {Object.entries(Keys).map(([type, styles]) => (
                     <optgroup key={type} label={type}>
                         {styles.map(style => (
@@ -230,9 +328,9 @@ export function LyricsGeneratorFormAdvanced({
             <select
                 className={lyricsSelectClass}
                 onChange={(e) => handleLyricsOptionChange('tempos', e.target.value)}
-                value={lyricsOptions.tempos || ''}
+                value={displayOptions.tempos || 'Random'}
             >
-                <option value="">Select Tempos</option>
+                <option value="Random">Random</option>
                 {Tempos.map(level => (
                     <option key={level} value={level}>{level}</option>
                 ))}
@@ -244,9 +342,9 @@ export function LyricsGeneratorFormAdvanced({
             <select
                 className={lyricsSelectClass}
                 onChange={(e) => handleLyricsOptionChange('moods', e.target.value)}
-                value={lyricsOptions.moods || ''}
+                value={displayOptions.moods || 'Random'}
             >
-                <option value="">Select Length</option>
+                <option value="Random">Random</option>
                 {Mood.map(mood => (
                     <option key={mood} value={mood}>{mood}</option>
                 ))}
@@ -255,13 +353,13 @@ export function LyricsGeneratorFormAdvanced({
 
         <div className="select-container flex flex-col items-center w-full">
           {/* Instruments 제목 - 왼쪽 정렬 */}
-          <span className="text-sm font-light text-gray-700 block w-[350px] h-[40px] md:w-[250px] md:h-[34px] text-left">
+          <span className="text-sm font-light text-gray-700 block w-[350px] h-[40px] md:w-[250px] h-[20px] mb-2 text-left">
             Instruments
           </span>
 
           {/* Instruments 선택 버튼 - 중앙 정렬 유지 */}
           <div 
-            className={checkBoxClass + " cursor-pointer w-full"}
+            className={checkBoxClass + " cursor-pointer"}
             onClick={() => setShowInstruments(!showInstruments)}
           >
             <div className="flex justify-between items-center w-full">
@@ -317,4 +415,3 @@ export function LyricsGeneratorFormAdvanced({
     </div>
   );
 }
-

@@ -7,17 +7,6 @@ import { getServerSession } from "next-auth/next"
 import { authOptions } from "./api/auth/[...nextauth]/route"
 import { redirect } from "next/navigation"
 import { signOut } from "next-auth/react"
-import { Suspense } from 'react';
-import dynamic from 'next/dynamic';
-
-// 클라이언트 컴포넌트 동적 임포트
-const SongGeneratorForm = dynamic(() => import('@/components/generators/SongGeneratorForm'), {
-  ssr: false
-});
-
-const LyricsGeneratorFormAdvanced = dynamic(() => import('@/components/generators/LyricsGeneratorFormAdvanced'), {
-  ssr: false
-});
 
 export default async function Home() {
   const session = await getServerSession(authOptions)

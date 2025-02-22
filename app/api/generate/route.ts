@@ -55,12 +55,13 @@ export async function POST(req: Request) {
 
                             8. **Ignore Missing Parameters**
                             - If a parameter is not provided, do not include it in the output.
+                            - Do not include [None] in the output.
 
                             ### **Example Output Format**
                             \`\`\`
                             Title of the Song  
 
-                            [Genre] [Key] [BPM] [Vocal Effect]  
+                            [Genre] [Key] [BPM] [Vocal Effect]  // If a parameter is not provided, just ignore it. Do not include [None] in the output.
 
                             [Intro] [Soft Piano, Echoing Melody]   
 

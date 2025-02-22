@@ -22,7 +22,7 @@ const GeneratedResult: React.FC<GeneratedResultProps> = ({ isGenerating, generat
                 >
                     <div className="flex items-center justify-between mb-4" data-oid="x_5bkhc">
                         <h3 className="text-xl font-light" data-oid="pja3od6">
-                            Generated Result
+                            Generating Result
                         </h3>
                         <span className="text-sm text-gray-500" data-oid="m0rpj3v">
                             Processing...
@@ -37,7 +37,7 @@ const GeneratedResult: React.FC<GeneratedResultProps> = ({ isGenerating, generat
             ) : (
                 generatedPrompts.length > 0 && (
                     <div
-                        className="max-w-3xl mx-auto bg-[#FFF9F1] rounded-2xl p-8 shadow-sm mb-12 border border-gray-100"
+                        className="max-w-3xl mx-auto bg-gradient-to-br from-gray-50 to-blue-100 rounded-2xl p-8 shadow-sm mb-12 border border-gray-100"
                         data-oid="results-container"
                     >
                         <div className="space-y-6">

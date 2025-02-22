@@ -23,7 +23,7 @@ export function Navigation() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
-        <div className="mr-4 hidden md:flex">
+        <div className="mr-4 flex">
           <div className="mr-4 flex justify-between h-16 items-center">
               <Link href="/" className="flex items-center">
                 <Image 
@@ -85,18 +85,7 @@ export function Navigation() {
         </Sheet>
         */}
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          {/*
-          <div className="w-full flex-1 md:w-auto md:flex-none">
-            <div className="relative">
-              <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input placeholder="Search prompts..." className="pl-8 md:w-[300px] lg:w-[400px]" />
-            </div>
-          </div>
-          <Button variant="outline" className="ml-auto hidden md:flex" onClick={() => setIsConnected(!isConnected)}>
-            <Wallet className="mr-2 h-4 w-4" />
-            {isConnected ? "0x1234...5678" : "Connect Wallet"}
-          </Button>
-          */}
+          {/*  //로그인 버튼 일시적으로 비활성
          {isLoggedIn ? (
             <Button variant="outline" className="ml-2" onClick={handleLogout}>
               Logout
@@ -108,6 +97,7 @@ export function Navigation() {
               </Button>
             </Link>
           )}
+          */}
         </div>
       </div>
     </header>
