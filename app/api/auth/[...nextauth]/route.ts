@@ -1,4 +1,5 @@
-import NextAuth, { AuthOptions } from "next-auth"
+import { AuthOptions } from 'next-auth';
+import NextAuth from 'next-auth';
 import GoogleProvider from "next-auth/providers/google"
 // import { prisma } from "@/lib/prisma"  // 주석 처리
 
@@ -46,4 +47,8 @@ export const authOptions: AuthOptions = {
 
 const handler = NextAuth(authOptions)
 
-export { handler as GET, handler as POST } 
+export { handler as GET, handler as POST }
+
+// authOptions를 별도 파일로 분리
+// app/lib/auth.ts로 이동
+export { authOptions }; 

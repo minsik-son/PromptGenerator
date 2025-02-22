@@ -51,13 +51,11 @@ export function LyricsGeneratorFormAdvanced({
       setCustomTitlePrompt('');
     }
 
-    // lyricsOptions 업데이트
-    setLyricsOptions((prev: LyricsOptionsAdvanced) => ({
+    setLyricsOptions((prev) => ({
       ...prev,
       [key]: value
     }));
 
-    // displayOptions도 함께 업데이트
     setDisplayOptions(prev => ({
       ...prev,
       [key]: value
@@ -74,7 +72,7 @@ export function LyricsGeneratorFormAdvanced({
         newRandomOptions.theme = getRandomOption(THEMES.filter(t => t !== 'Custom'));
       }
       if (displayOptions.structure === 'Random') {
-        newRandomOptions.structure = getRandomOption([...LYRICS_STRUCTURES]); // spread operator로 readonly 해결
+        newRandomOptions.structure = getRandomOption(Array.from(LYRICS_STRUCTURES));
       }
       if (displayOptions.vocalType === 'Random') {
         newRandomOptions.vocalType = getRandomOption(Object.values(Vocal_Types).flat());

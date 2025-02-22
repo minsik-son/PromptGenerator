@@ -8,6 +8,12 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
 
+// result 타입 명시
+interface ResultItem {
+  title: string;
+  prompt: string;
+}
+
 export async function POST(req: Request) {
     try {
         const session = await getServerSession(authOptions);
@@ -215,7 +221,7 @@ export async function POST(req: Request) {
                 const jsonContent = JSON.parse(content);
                 
                 if (jsonContent.results && Array.isArray(jsonContent.results)) {
-                    const variations = jsonContent.results.map(result => ({
+                    const variations = jsonContent.results.map((result: ResultItem) => ({
                         title: result.title.trim(),
                         prompt: result.prompt.trim()
                     }));

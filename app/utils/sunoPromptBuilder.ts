@@ -45,7 +45,7 @@ export class SunoPromptBuilder {
     static buildLyricsPrompt(params: LyricsOptionsAdvanced): string {
         const promptTemplate = {
             "language": params.language,
-            "structure": params.structure || [],
+            "structure": params.structure,
             "theme": params.theme,
             "title": params.title,
             "vocalType": params.vocalType || "",
@@ -80,7 +80,7 @@ export class SunoPromptBuilder {
 
     static parseLyricsDescription(description: string): Partial<LyricsOptionsAdvanced> {
         const params: Partial<LyricsOptionsAdvanced> = {
-            structure: []
+            structure: ""
         };
         
         const keywords = description.toLowerCase();

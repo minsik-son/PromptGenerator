@@ -187,9 +187,7 @@ export default function UserGuidePage() {
                   </div>
                 ))}
               </div>
-              <p className="text-center text-muted-foreground mt-8">
-                Services for image generation, video production, and language models will be announced at a later date.
-              </p>
+              
             </div>
           </div>
         </section>

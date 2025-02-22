@@ -18,9 +18,9 @@ export function SongGeneratorForm({ prompt, setPrompt, options, setOptions }: So
   const [isGenerating, setIsGenerating] = useState(false);
 
   const handleOptionChange = (key: keyof PromptOptions, value: string | string[]) => {
-    setOptions((prev: PromptOptions) => ({
-        ...prev,
-        [key]: value
+    setOptions((prev) => ({
+      ...prev,
+      [key]: value
     }));
   };
 
