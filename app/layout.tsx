@@ -86,8 +86,7 @@ export default async function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9921649727270589"
-                crossorigin="anonymous"></script>
+        <meta name="google-adsense-account" content="ca-pub-9921649727270589" />
       </head>
       <body className={inter.className}>
         <NextAuthProvider>
