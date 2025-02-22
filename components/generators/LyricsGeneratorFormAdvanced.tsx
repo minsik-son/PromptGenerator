@@ -17,7 +17,7 @@ interface LyricsGeneratorFormProps {
   prompt: string;
   setPrompt: (prompt: string) => void;
   lyricsOptions: LyricsOptionsAdvanced;
-  setLyricsOptions: (options: LyricsOptionsAdvanced) => void;
+  setLyricsOptions: React.Dispatch<React.SetStateAction<LyricsOptionsAdvanced>>;
   customThemePrompt: string;
   setCustomThemePrompt: (prompt: string) => void;
   customTitle: string;
