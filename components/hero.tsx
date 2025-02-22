@@ -1,10 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { SongGeneratorForm } from "./generators/SongGeneratorForm"
-import { LyricsGeneratorForm } from "./generators/LyricsGeneratorForm"
 
 export function Hero() {
   const [activeTab, setActiveTab] = useState('song');
@@ -12,18 +8,6 @@ export function Hero() {
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
   };
-
-  /**
-   * <Link href="/browse">
-              <Button size="lg" className="rounded-full">
-                Song Generator
-              </Button>
-            </Link>
-            <Link href="/sell">
-              <Button size="lg" variant="outline" className="rounded-full">
-                Lyrics Generator
-   * 
-   */
 
   return (
     <div className="relative">
