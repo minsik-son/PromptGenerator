@@ -13,17 +13,17 @@ export interface PromptOptions {
 
 //Advanced Lyrics Options
 export interface LyricsOptionsAdvanced {
+    title?: string;
     theme: string;
     language: string;
-    title?: string;
-    hasTitle?: string;     // 제목 유무 (Yes/No)
-    vocalType?: string;
-    vocalEffect?: string;
     genres?: string;
     keys?: string;
     tempos?: string;
     moods?: string;
-    structure: string;
+    vocalType?: string;
+    vocalEffect?: string;
     instruments?: string[];
+    structure?: string;
     additionalMeta?: string;
+    hasTitle?: string;
 }

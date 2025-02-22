@@ -105,10 +105,12 @@ export default function AboutPage() {
             <p className="mx-auto max-w-[700px] text-xl text-muted-foreground">
               Supporting everyone's creative journey is our promise.
             </p>
-            <button className="inline-flex items-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90">
+            {/** 
+            <button  className="inline-flex items-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90">
               Join Us Today
               <ArrowRight className="ml-2 h-4 w-4" />
             </button>
+            */}
           </div>
         </div>
       </section>

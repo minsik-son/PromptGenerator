@@ -85,6 +85,9 @@ export function Navigation() {
         </Sheet>
         */}
         <nav className="flex items-center space-x-6 text-sm font-medium">
+          <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">
+            Prompt Generator
+          </Link>
           <Link href="/pages/howToUse" className="text-sm text-muted-foreground hover:text-foreground">
             How to Use
           </Link>

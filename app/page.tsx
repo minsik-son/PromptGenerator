@@ -7,6 +7,16 @@ import { getServerSession } from "next-auth/next"
 import { authOptions } from "./api/auth/[...nextauth]/auth-options"
 import { redirect } from "next/navigation"
 import { signOut } from "next-auth/react"
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Create AI Music Prompts | Suno AI Generator',
+  description: 'Generate professional music prompts and lyrics using Suno AI. Our advanced AI tools help you create unique and engaging musical content.',
+  openGraph: {
+    title: 'Create AI Music Prompts | Suno AI Generator',
+    description: 'Generate professional music prompts and lyrics using Suno AI',
+  }
+}
 
 export default async function Home() {
   /*
@@ -16,12 +26,34 @@ export default async function Home() {
   if (!session) {
     redirect("/login")
   }
-*/
-  // 로그인한 사용자는 메인 페이지 표시
+  */
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
       <main className="flex-1">
+        {/* Schema.org JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "Suno AI Generator",
+              "applicationCategory": "MusicApplication",
+              "description": "AI-powered tool for generating music prompts and lyrics",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "featureList": [
+                "Music Prompt Generation",
+                "Lyrics Generation",
+                "AI-powered Creativity Tools"
+              ]
+            })
+          }}
+        />
         <Hero />
         <SelectMode />
       </main>
