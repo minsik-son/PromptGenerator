@@ -4,7 +4,7 @@ import { FeaturedPrompts } from "@/components/featured-prompts"
 import { Footer } from "@/components/footer"
 import { SelectMode } from "@/components/selectMode"
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "./api/auth/[...nextauth]/route"
+import { authOptions } from "./api/auth/[...nextauth]/auth-options"
 import { redirect } from "next/navigation"
 import { signOut } from "next-auth/react"
 

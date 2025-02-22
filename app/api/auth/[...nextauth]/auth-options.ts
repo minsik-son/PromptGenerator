@@ -1,8 +1,8 @@
 // app/api/auth/[...nextauth]/auth-options.ts (같은 폴더에 새로 생성)
-import type { NextAuthConfig } from "next-auth"
+import { AuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 
-export const authOptions: NextAuthConfig = {
+export const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -11,6 +11,21 @@ export const authOptions: NextAuthConfig = {
   ],
   session: {
     strategy: "jwt",
+  },
+  pages: {
+    signIn: '/login',
+  },
+  callbacks: {
+    async signIn({ user, account, profile }) {
+      if (!user.email) return false;
+      return true;
+    },
+    async session({ session, token }) {
+      return session;
+    },
+    async redirect({ url, baseUrl }) {
+      return url.startsWith(baseUrl) ? '/' : baseUrl;
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
 }
