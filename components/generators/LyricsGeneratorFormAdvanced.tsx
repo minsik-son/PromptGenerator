@@ -28,8 +28,6 @@ interface LyricsGeneratorFormProps {
 export function LyricsGeneratorFormAdvanced({ 
   prompt, 
   setPrompt, 
-  lyricsOptions, 
-  setLyricsOptions,
   customThemePrompt,
   setCustomThemePrompt,
   customTitle,
@@ -41,6 +39,7 @@ export function LyricsGeneratorFormAdvanced({
   const [showTitleInput, setShowTitleInput] = useState(false);
   const [titleText, setTitleText] = useState('');
   const [displayOptions, setDisplayOptions] = useState<Partial<LyricsOptionsAdvanced>>({});
+  const [lyricsOptions, setLyricsOptions] = useState<LyricsOptionsAdvanced>({});
 
   const getRandomOption = (options: string[]) => {
     return options[Math.floor(Math.random() * options.length)];
@@ -51,7 +50,7 @@ export function LyricsGeneratorFormAdvanced({
       setCustomTitlePrompt('');
     }
 
-    setLyricsOptions((prev) => ({
+    setLyricsOptions((prev: LyricsOptionsAdvanced) => ({
       ...prev,
       [key]: value
     }));
@@ -167,7 +166,7 @@ export function LyricsGeneratorFormAdvanced({
 
     // 초기값이 있는 경우에만 상태 업데이트
     if (Object.keys(initialOptions).length > 0) {
-        setLyricsOptions(prev => ({
+        setLyricsOptions((prev: LyricsOptionsAdvanced) => ({
             ...prev,
             ...initialOptions
         }));
