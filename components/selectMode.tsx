@@ -35,7 +35,7 @@ export function SelectMode() {
     keys: '',
     tempos: '',
     moods: '',
-    structure: [],
+    structure: '',     // string[]에서 string으로 변경
     instruments: [],
     additionalMeta: ''
   });
@@ -124,7 +124,7 @@ export function SelectMode() {
         <Button 
           size="lg" 
           className={`rounded-full transition-all ${
-            activeTab === 'song' ? 'text-white' : 'bg-white text-black hover:bg-gray-100'
+            activeTab === 'song' ? 'text-white' : 'bg-white text-black border border-gray-300 hover:bg-gray-100'
           }`}
           onClick={() => handleTabChange('song')}
         >
@@ -134,7 +134,7 @@ export function SelectMode() {
         <Button 
           size="lg" 
           className={`rounded-full transition-all ${
-            activeTab === 'lyrics' ? 'text-white' : 'bg-white text-black hover:bg-gray-100'
+            activeTab === 'lyrics' ? 'text-white' : 'bg-white text-black border border-gray-300 hover:bg-gray-100'
           }`}
           onClick={() => handleTabChange('lyrics')}
         >
@@ -160,6 +160,7 @@ export function SelectMode() {
             setCustomThemePrompt={setCustomThemePrompt}
             customTitle={lyricsOptions.title || ''}
             setCustomTitlePrompt={(newTitle) => setLyricsOptions(prev => ({ ...prev, title: newTitle }))}
+            isGenerating={isGenerating}
           />
         )}
       </div>

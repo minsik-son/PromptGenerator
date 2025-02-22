@@ -9,18 +9,7 @@ export interface PromptOptions {
     soundEffects?: string;
 }
 
-export interface LyricsOptions {
-    structure: string[];
-    theme: string;
-    language: string;
-    vocalStyle?: string;
-    style?: string;
-    repetition?: string;
-    rhymePattern?: string;
-    metaphorLevel?: string;
-    songLength?: string;
-    instruments?: string[];
-} 
+
 
 //Advanced Lyrics Options
 export interface LyricsOptionsAdvanced {
@@ -34,7 +23,7 @@ export interface LyricsOptionsAdvanced {
     keys?: string;
     tempos?: string;
     moods?: string;
-    structure?: string[];
+    structure: string;
     instruments?: string[];
     additionalMeta?: string;
 }

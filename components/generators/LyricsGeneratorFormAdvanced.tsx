@@ -22,6 +22,7 @@ interface LyricsGeneratorFormProps {
   setCustomThemePrompt: (prompt: string) => void;
   customTitle: string;
   setCustomTitlePrompt: (title: string) => void;
+  isGenerating: boolean; // 추가: 생성 중인지 상태 추가
 }
 
 export function LyricsGeneratorFormAdvanced({ 
@@ -32,7 +33,8 @@ export function LyricsGeneratorFormAdvanced({
   customThemePrompt,
   setCustomThemePrompt,
   customTitle,
-  setCustomTitlePrompt
+  setCustomTitlePrompt,
+  isGenerating
 }: LyricsGeneratorFormProps) {
   const [selectedInstruments, setSelectedInstruments] = useState<string[]>([]);
   const [showInstruments, setShowInstruments] = useState(false);
@@ -48,41 +50,59 @@ export function LyricsGeneratorFormAdvanced({
     if (key === 'hasTitle' && value === 'No') {
       setCustomTitlePrompt('');
     }
-    if (value === 'Random') {
-      switch (key) {
-        case 'theme':
-          value = getRandomOption(THEMES.filter(t => t !== 'Custom'));
-          break;
-        case 'structure':
-          value = getRandomOption(Array.from(LYRICS_STRUCTURES));
-          break;
-        case 'vocalType':
-          value = getRandomOption(Object.values(Vocal_Types).flat());
-          break;
-        case 'vocalEffect':
-          value = getRandomOption(Vocal_Effects);
-          break;
-        case 'genres':
-          value = getRandomOption(Genres);
-          break;
-        case 'keys':
-          value = getRandomOption(Object.values(Keys).flat());
-          break;
-        case 'tempos':
-          value = getRandomOption(Tempos);
-          break;
-        case 'moods':
-          value = getRandomOption(Mood);
-          break;
-        default:
-          break;
-      }
-    }
+
+    // lyricsOptions 업데이트
     setLyricsOptions((prev: LyricsOptionsAdvanced) => ({
       ...prev,
       [key]: value
     }));
+
+    // displayOptions도 함께 업데이트
+    setDisplayOptions(prev => ({
+      ...prev,
+      [key]: value
+    }));
   };
+
+  // isGenerating이 변경될 때마다 랜덤값 업데이트
+  useEffect(() => {
+    if (isGenerating) {
+      const newRandomOptions: Partial<LyricsOptionsAdvanced> = {};
+      
+      // Random으로 설정된 옵션들만 새로운 랜덤값 생성
+      if (displayOptions.theme === 'Random') {
+        newRandomOptions.theme = getRandomOption(THEMES.filter(t => t !== 'Custom'));
+      }
+      if (displayOptions.structure === 'Random') {
+        newRandomOptions.structure = getRandomOption([...LYRICS_STRUCTURES]); // spread operator로 readonly 해결
+      }
+      if (displayOptions.vocalType === 'Random') {
+        newRandomOptions.vocalType = getRandomOption(Object.values(Vocal_Types).flat());
+      }
+      if (displayOptions.vocalEffect === 'Random') {
+        newRandomOptions.vocalEffect = getRandomOption(Vocal_Effects);
+      }
+      if (displayOptions.genres === 'Random') {
+        newRandomOptions.genres = getRandomOption(Genres);
+      }
+      if (displayOptions.keys === 'Random') {
+        newRandomOptions.keys = getRandomOption(Object.values(Keys).flat());
+      }
+      if (displayOptions.tempos === 'Random') {
+        newRandomOptions.tempos = getRandomOption(Tempos);
+      }
+      if (displayOptions.moods === 'Random') {
+        newRandomOptions.moods = getRandomOption(Mood);
+      }
+
+      if (Object.keys(newRandomOptions).length > 0) {
+        setLyricsOptions((prev: LyricsOptionsAdvanced) => ({
+          ...prev,
+          ...newRandomOptions
+        }));
+      }
+    }
+  }, [isGenerating, displayOptions]); // displayOptions도 의존성 배열에 추가
 
   const handleInstrumentChange = (instrument: string) => {
     setSelectedInstruments(prev => {
@@ -117,8 +137,8 @@ export function LyricsGeneratorFormAdvanced({
     }
     
     // 선택적 필드에 대한 초기 Random 값 설정
-    if (!lyricsOptions.structure || (Array.isArray(lyricsOptions.structure) && lyricsOptions.structure.length === 0)) {
-      initialOptions.structure = [getRandomOption(Array.from(LYRICS_STRUCTURES))];
+    if (!lyricsOptions.structure) {
+      initialOptions.structure = getRandomOption(LYRICS_STRUCTURES);
       setDisplayOptions(prev => ({ ...prev, structure: 'Random' }));
     }
     if (!lyricsOptions.vocalType) {
@@ -158,14 +178,6 @@ export function LyricsGeneratorFormAdvanced({
 
   return (
     <div className="max-w-3xl mx-auto">
-      <div className="my-20 items-center text-center">
-        <span className="block text-sm text-gray-500 mt-4 text-center">
-          Options are set to random values by default
-        </span>
-        <span className="block text-sm text-gray-500 mt-4 text-center">
-          Please adjust them carefully to apply the desired style of metatags
-        </span>
-      </div>
       <div className="grid grid-cols-1 place-items-center md:grid-cols-2 gap-4 md:gap-x-8">
 
         <div className="select-container">
@@ -351,9 +363,9 @@ export function LyricsGeneratorFormAdvanced({
             </select>
         </div>
 
-        <div className="select-container flex flex-col items-center w-full">
+        <div className="select-container flex flex-col items-center">
           {/* Instruments 제목 - 왼쪽 정렬 */}
-          <span className="text-sm font-light text-gray-700 block w-[350px] h-[40px] md:w-[250px] h-[20px] mb-2 text-left">
+          <span className="text-sm font-light text-gray-700 block w-[350px] md:w-[250px] h-[20px] mb-2 text-left">
             Instruments
           </span>
 

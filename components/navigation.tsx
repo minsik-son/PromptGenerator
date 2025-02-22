@@ -84,6 +84,14 @@ export function Navigation() {
           </SheetContent>
         </Sheet>
         */}
+        <nav className="flex items-center space-x-6 text-sm font-medium">
+          <Link href="/pages/howToUse" className="text-sm text-muted-foreground hover:text-foreground">
+            How to Use
+          </Link>
+          <Link href="/pages/aboutUs" className="text-sm text-muted-foreground hover:text-foreground">
+            About Us
+          </Link>
+        </nav>
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           {/*  //로그인 버튼 일시적으로 비활성
          {isLoggedIn ? (

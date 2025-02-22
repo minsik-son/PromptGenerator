@@ -13,7 +13,7 @@ export function Footer() {
             <h3 className="text-lg font-semibold mb-4 text-center">About</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground">
+                <Link href="/pages/aboutUs" className="text-sm text-muted-foreground hover:text-foreground">
                   About Us
                 </Link>
               </li>

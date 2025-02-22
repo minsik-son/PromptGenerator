@@ -29,7 +29,7 @@ export async function POST(req: Request) {
 
                             2. **Metadata Formatting**  
                             - Immediately below the title, insert metadata as follows:  
-                                [POP] [C Major] [120 BPM] [Aurutune] 
+                                [Genre] [Key] [BPM] [Vocal Effect] 
                             - **Ensure a blank line follows this metadata block**.
 
                             3. **Language & Theme**  
@@ -53,36 +53,32 @@ export async function POST(req: Request) {
                             - Ensure the lyrics flow **naturally and tell a compelling story**.  
                             - Transitions between **verses, chorus, and bridge should feel seamless**.
 
-                            8. **Ignore Missing Parameters**
-                            - If a parameter is not provided, do not include it in the output.
-                            - Do not include [None] in the output.
 
-                            ### **Example Output Format**
+                            ### **Examples Output Format**
+                            - This is an example output format. If structure is provided, ignore [Intro] and [Outro].
+
+
                             \`\`\`
-                            Title of the Song  
+                            Title of the Song
 
-                            [Genre] [Key] [BPM] [Vocal Effect]  // If a parameter is not provided, just ignore it. Do not include [None] in the output.
+                            [Hip Hop] [F Major] [112 BPM] [Powerful Belting]
 
-                            [Intro] [Soft Piano, Echoing Melody]   
+                            [Verse 1] [Rap / Spoken Word] [Synth Bass & Light Percussion]
+                            Lyrics... 
 
-                            [Verse 1] [Male Tenor] [Piano & Light Strings]  
-                            Lyrics...  
+                            [Chorus] [Rap / Spoken Word, Full Band]
+                            Lyrics... 
 
-                            [Pre-Chorus] [Building Energy, Drums Enter]  
-                            Lyrics...  
+                            [Verse 2] [Rap / Spoken Word] [Driving Bass & Drums]
+                            Lyrics... 
 
-                            [Chorus] [Choir (Mixed), Full Band]  
-                            Lyrics...  
+                            [Bridge] [Rap / Spoken Word, Slower Tempo] [Acoustic Guitar & Soft Strings]
+                            Lyrics... 
 
-                            [Bridge] [Slower Tempo, Emotional Shift]  
-                            Lyrics...  
-
-                            [Chorus] [Even More Powerful]  
-                            Lyrics...  
-
-                            [Outro] [Fading Melody, Echoing Vocals]  
-                            Lyrics...  
+                            [Chorus] [Rap / Spoken Word, Full Band]
+                            Lyrics... 
                             \`\`\`
+
 
                             Ensure **blank lines are maintained between sections** and that **lyrics directly follow their respective section labels without gaps**.
                             `;
@@ -99,9 +95,9 @@ export async function POST(req: Request) {
                         - **Tempo**: ${params.tempos ? params.tempos : "Automatically select"}  
                         - **Mood**: ${params.moods ? params.moods : "Automatically adjust"}  
                         - **Vocal Type**: ${params.vocalType ? params.vocalType : "Automatically select"}  
-                        - **Vocal Effect**: ${params.vocalEffect ? params.vocalEffect : "None"}  
-                        - **Instruments**: ${params.instruments ? params.instruments.join(", ") : "Automatically select"}  
-                        - **Structure**: ${params.structure ? params.structure : "Choose a fitting structure"}  
+                        - **Vocal Effect**: ${params.vocalEffect ? params.vocalEffect : "Automatically select"}  
+                        - **Instruments**: ${params.instruments ? params.instruments.join(", ") : "None"}  
+                        - **Structure**: ${params.structure ? params.structure : "Automatically select"}  
                         - **Additional Meta**: ${params.additionalMeta ? params.additionalMeta : "None"}  
 
                         ### **Instructions for GPT:**
