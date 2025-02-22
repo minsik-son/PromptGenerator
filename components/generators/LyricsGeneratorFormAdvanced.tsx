@@ -25,9 +25,28 @@ interface LyricsGeneratorFormProps {
   isGenerating: boolean; // 추가: 생성 중인지 상태 추가
 }
 
+// 초기 상태 정의
+const initialLyricsOptions: LyricsOptionsAdvanced = {
+  title: '',
+  theme: '',
+  language: 'English',  // 기본값 설정
+  genres: '',
+  keys: '',
+  tempos: '',
+  moods: '',
+  vocalType: '',
+  vocalEffect: '',
+  instruments: [],
+  structure: '',
+  additionalMeta: '',
+  hasTitle: 'No'
+};
+
 export function LyricsGeneratorFormAdvanced({ 
   prompt, 
   setPrompt, 
+  lyricsOptions,
+  setLyricsOptions,
   customThemePrompt,
   setCustomThemePrompt,
   customTitle,
@@ -39,7 +58,11 @@ export function LyricsGeneratorFormAdvanced({
   const [showTitleInput, setShowTitleInput] = useState(false);
   const [titleText, setTitleText] = useState('');
   const [displayOptions, setDisplayOptions] = useState<Partial<LyricsOptionsAdvanced>>({});
-  const [lyricsOptions, setLyricsOptions] = useState<LyricsOptionsAdvanced>({});
+  
+  // 컴포넌트 마운트 시 초기화
+  useEffect(() => {
+    setLyricsOptions(initialLyricsOptions);
+  }, []);
 
   const getRandomOption = (options: string[]) => {
     return options[Math.floor(Math.random() * options.length)];
@@ -61,36 +84,40 @@ export function LyricsGeneratorFormAdvanced({
     }));
   };
 
-  // isGenerating이 변경될 때마다 랜덤값 업데이트
   useEffect(() => {
     if (isGenerating) {
       const newRandomOptions: Partial<LyricsOptionsAdvanced> = {};
       
-      // Random으로 설정된 옵션들만 새로운 랜덤값 생성
-      if (displayOptions.theme === 'Random') {
-        newRandomOptions.theme = getRandomOption(THEMES.filter(t => t !== 'Custom'));
-      }
-      if (displayOptions.structure === 'Random') {
-        newRandomOptions.structure = getRandomOption(Array.from(LYRICS_STRUCTURES));
-      }
-      if (displayOptions.vocalType === 'Random') {
-        newRandomOptions.vocalType = getRandomOption(Object.values(Vocal_Types).flat());
-      }
-      if (displayOptions.vocalEffect === 'Random') {
-        newRandomOptions.vocalEffect = getRandomOption(Vocal_Effects);
-      }
-      if (displayOptions.genres === 'Random') {
-        newRandomOptions.genres = getRandomOption(Genres);
-      }
-      if (displayOptions.keys === 'Random') {
-        newRandomOptions.keys = getRandomOption(Object.values(Keys).flat());
-      }
-      if (displayOptions.tempos === 'Random') {
-        newRandomOptions.tempos = getRandomOption(Tempos);
-      }
-      if (displayOptions.moods === 'Random') {
-        newRandomOptions.moods = getRandomOption(Mood);
-      }
+      Object.entries(displayOptions).forEach(([key, value]) => {
+        if (value === 'Random') {
+          switch(key) {
+            case 'theme':
+              newRandomOptions.theme = getRandomOption(THEMES.filter(t => t !== 'Custom'));
+              break;
+            case 'structure':
+              newRandomOptions.structure = getRandomOption(Array.from(LYRICS_STRUCTURES));
+              break;
+            case 'vocalType':
+              newRandomOptions.vocalType = getRandomOption(Object.values(Vocal_Types).flat());
+              break;
+            case 'vocalEffect':
+              newRandomOptions.vocalEffect = getRandomOption(Vocal_Effects);
+              break;
+            case 'genres':
+              newRandomOptions.genres = getRandomOption(Genres);
+              break;
+            case 'keys':
+              newRandomOptions.keys = getRandomOption(Object.values(Keys).flat());
+              break;
+            case 'tempos':
+              newRandomOptions.tempos = getRandomOption(Tempos);
+              break;
+            case 'moods':
+              newRandomOptions.moods = getRandomOption(Mood);
+              break;
+          }
+        }
+      });
 
       if (Object.keys(newRandomOptions).length > 0) {
         setLyricsOptions((prev: LyricsOptionsAdvanced) => ({
@@ -99,7 +126,7 @@ export function LyricsGeneratorFormAdvanced({
         }));
       }
     }
-  }, [isGenerating, displayOptions]); // displayOptions도 의존성 배열에 추가
+  }, [isGenerating, displayOptions]);
 
   const handleInstrumentChange = (instrument: string) => {
     setSelectedInstruments(prev => {
@@ -119,59 +146,6 @@ export function LyricsGeneratorFormAdvanced({
     if (instruments.length <= 2) return instruments.join(', ');
     return `${instruments[0]}, ${instruments[1]} +${instruments.length - 2}`;
   };
-
-  useEffect(() => {
-    const initialOptions: Partial<LyricsOptionsAdvanced> = {};
-    
-    // 필수 필드에 대한 초기 Random 값 설정
-    if (!lyricsOptions.theme) {
-        initialOptions.theme = getRandomOption(THEMES.filter(t => t !== 'Custom'));
-        setDisplayOptions(prev => ({ ...prev, theme: 'Random' }));
-
-    }
-    if (!lyricsOptions.language) {
-        initialOptions.language = 'English'; // 기본값
-    }
-    
-    // 선택적 필드에 대한 초기 Random 값 설정
-    if (!lyricsOptions.structure) {
-      initialOptions.structure = getRandomOption(LYRICS_STRUCTURES);
-      setDisplayOptions(prev => ({ ...prev, structure: 'Random' }));
-    }
-    if (!lyricsOptions.vocalType) {
-        initialOptions.vocalType = getRandomOption(Object.values(Vocal_Types).flat());
-        setDisplayOptions(prev => ({ ...prev, vocalType: 'Random' }));
-    }
-    if (!lyricsOptions.vocalEffect) {
-        initialOptions.vocalEffect = getRandomOption(Vocal_Effects);
-        setDisplayOptions(prev => ({ ...prev, vocalEffect: 'Random' }));
-    }
-    if (!lyricsOptions.genres) {
-        initialOptions.genres = getRandomOption(Genres);
-        setDisplayOptions(prev => ({ ...prev, genres: 'Random' }));
-    }
-    if (!lyricsOptions.keys) {
-        initialOptions.keys = getRandomOption(Object.values(Keys).flat());
-        setDisplayOptions(prev => ({ ...prev, keys: 'Random' }));
-    }
-    if (!lyricsOptions.tempos) {
-        initialOptions.tempos = getRandomOption(Tempos);
-        setDisplayOptions(prev => ({ ...prev, tempos: 'Random' }));
-    }
-    if (!lyricsOptions.moods) {
-        initialOptions.moods = getRandomOption(Mood);
-        setDisplayOptions(prev => ({ ...prev, moods: 'Random' }));
-    }
-    
-
-    // 초기값이 있는 경우에만 상태 업데이트
-    if (Object.keys(initialOptions).length > 0) {
-        setLyricsOptions((prev: LyricsOptionsAdvanced) => ({
-            ...prev,
-            ...initialOptions
-        }));
-    }
-  }, []); // 컴포넌트 마운트 시 1회만 실행
 
   return (
     <div className="max-w-3xl mx-auto">
