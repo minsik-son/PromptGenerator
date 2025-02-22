@@ -1,21 +1,7 @@
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import type { NextAuthConfig } from "next-auth";
+import { authOptions } from "@/app/lib/auth";
 
-// ✅ Google 로그인 설정
-export const authConfig: NextAuthConfig = {
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-  ],
-  session: {
-    strategy: "jwt", // JWT 세션 사용
-  },
-  secret: process.env.NEXTAUTH_SECRET,
-};
+// NextAuth 핸들러 생성
+const handler = NextAuth(authOptions);
 
-// ✅ 최신 NextAuth 방식 적용
-const handler = NextAuth(authConfig);
 export { handler as GET, handler as POST };
