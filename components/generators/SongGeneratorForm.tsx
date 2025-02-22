@@ -10,7 +10,7 @@ interface SongGeneratorFormProps {
   prompt: string;
   setPrompt: (prompt: string) => void;
   options: PromptOptions;
-  setOptions: (options: PromptOptions) => void;
+  setOptions: React.Dispatch<React.SetStateAction<PromptOptions>>;
 }
 
 export function SongGeneratorForm({ prompt, setPrompt, options, setOptions }: SongGeneratorFormProps) {
