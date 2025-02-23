@@ -1,13 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-
 export function Hero() {
-  const [activeTab, setActiveTab] = useState('song');
-
-  const handleTabChange = (tab: string) => {
-    setActiveTab(tab);
-  };
 
   return (
     <div className="relative">

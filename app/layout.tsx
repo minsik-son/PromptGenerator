@@ -10,7 +10,7 @@ import { Analytics } from "@vercel/analytics/react"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://your-domain.com'),
+  metadataBase: new URL('https://promptaipro.com'),
   title: {
     default: "Suno AI Prompt Generator | Create Music, Lyrics & More",
     template: "%s | Suno AI Generator"
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://www.promptaipro.com/',
+    url: 'https://promptaipro.com',
     siteName: 'Suno AI Generator',
     title: 'Suno AI Prompt Generator | Create Music, Lyrics & More',
     description: 'Create professional AI music prompts and lyrics with Suno AI Generator. Easy-to-use tools for generating high-quality music prompts, lyrics, and more.',
@@ -67,10 +67,10 @@ export const metadata: Metadata = {
     yandex: 'your-yandex-verification-code',
   },
   alternates: {
-    canonical: 'https://www.promptaipro.com/',
+    canonical: 'https://promptaipro.com',
     languages: {
-      'en-US': 'https://www.promptaipro.com/en-US',
-      'ko-KR': 'https://www.promptaipro.com/ko-KR',
+      'en-US': 'https://promptaipro.com/en-US',
+      'ko-KR': 'https://promptaipro.com/ko-KR',
     },
   },
 }

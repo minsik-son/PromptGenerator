@@ -94,6 +94,11 @@ export function Navigation() {
           <Link href="/pages/aboutUs" className="text-sm text-muted-foreground hover:text-foreground">
             About Us
           </Link>
+          {/*}
+          <Link href="/promptgen/music" className="text-sm text-muted-foreground hover:text-foreground">
+            Test Page
+          </Link>
+          */}
         </nav>
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           {/*  //로그인 버튼 일시적으로 비활성

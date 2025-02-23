@@ -4,12 +4,10 @@ import { FeaturedPrompts } from "@/components/featured-prompts"
 import { Footer } from "@/components/footer"
 import { SelectMode } from "@/components/selectMode"
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "./api/auth/[...nextauth]/auth-options"
 import { redirect } from "next/navigation"
 import { signOut } from "next-auth/react"
 import { Metadata } from 'next'
-import ModelSelection from "@/components/imageGen/model-selection"
-
+import Promptmode from "@/components/chooseprompt"
 
 export const metadata: Metadata = {
   title: 'Create AI Music Prompts | Suno AI Generator',
@@ -20,8 +18,9 @@ export const metadata: Metadata = {
   }
 }
 
-export default async function Home() {
-  /*
+export default async function SelectPrompt() {
+    console.log("Promptmode:" + Promptmode);
+    /*
   const session = await getServerSession(authOptions)
 
   // 로그인하지 않은 사용자는 로그인 페이지로 리다이렉트
@@ -57,7 +56,7 @@ export default async function Home() {
           }}
         />
         <Hero />
-        <SelectMode />
+        <Promptmode />
       </main>
       <Footer />
     </div>
