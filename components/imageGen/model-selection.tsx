@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Card } from "@/components/ui/card"
 import PromptBuilder from "./prompt-builder"
 import { cn } from "@/lib/utils"
-
+import Image from "next/image"
 type Model = "midjourney" | "dalle" | null
 
 export default function ModelSelection() {
@@ -48,9 +48,9 @@ export default function ModelSelection() {
                 </motion.div>
                 <div className="relative w-full h-full">
                   <img
-                    src={`/placeholder.svg?height=400&width=300`}
+                    src={`/images/${model}.png`}
                     alt={model}
-                    className="object-cover w-full h-full"
+                    className="object-cover w-200 h-300"
                   />
                 </div>
               </Card>

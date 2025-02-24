@@ -21,14 +21,13 @@ export default function Promptmode() {
             </div>
 
             <div className="rounded-lg bg-background p-6 shadow-lg relative overflow-hidden">
-            <Link href="/promptgen/music">
-
+            <Link href="/promptgen/image">
               <Image className="h-12 w-12 text-primary" />
               <h3 className="mt-4 text-xl font-bold">Image Generation</h3>
               <p className="mt-2 text-muted-foreground">Generate images using Midjourney and DALL·E</p>
-              </Link>
-
+            </Link>
             </div>
+            
             <div className="rounded-lg bg-background p-6 shadow-lg relative overflow-hidden">
               <Video className="h-12 w-12 text-primary" />
               <h3 className="mt-4 text-xl font-bold">Video Production</h3>

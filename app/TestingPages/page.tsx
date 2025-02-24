@@ -7,7 +7,9 @@ import { getServerSession } from "next-auth/next"
 import { redirect } from "next/navigation"
 import { signOut } from "next-auth/react"
 import { Metadata } from 'next'
-import Promptmode from "@/components/chooseprompt"
+import Promptmode from "@/components/Promptmode"
+
+//Main Page
 
 export const metadata: Metadata = {
   title: 'Create AI Music Prompts | Suno AI Generator',

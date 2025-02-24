@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ['lh3.googleusercontent.com'],
   },
+  // 기존 설정 유지
 }
 
 module.exports = nextConfig 

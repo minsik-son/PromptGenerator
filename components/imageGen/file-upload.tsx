@@ -5,22 +5,24 @@ import { useDropzone } from "react-dropzone"
 import { motion, AnimatePresence } from "framer-motion"
 import { Upload, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { uploadImage } from "@/lib/firebase/uploadImage"
 
 interface FileUploadProps {
-  onFileSelect: (file: File | null) => void
+  onFileSelect: (fileUrl: string | null) => void;
   className?: string
 }
 
 export default function FileUpload({ onFileSelect, className }: FileUploadProps) {
   const [preview, setPreview] = useState<string | null>(null)
-
-  const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
+  const onDrop = useCallback(async (acceptedFiles: File[]) => {
       if (acceptedFiles.length > 0) {
-        const file = acceptedFiles[0]
-        onFileSelect(file)
-        const objectUrl = URL.createObjectURL(file)
-        setPreview(objectUrl)
+        const file = acceptedFiles[0];
+        const fileUrl = await uploadImage(file);
+        if (fileUrl){
+          onFileSelect(fileUrl);
+          setPreview(fileUrl);
+
+        }
       }
     },
     [onFileSelect],
@@ -35,9 +37,6 @@ export default function FileUpload({ onFileSelect, className }: FileUploadProps)
   })
 
   const removeFile = () => {
-    if (preview) {
-      URL.revokeObjectURL(preview)
-    }
     setPreview(null)
     onFileSelect(null)
   }
