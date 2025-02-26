@@ -9,6 +9,10 @@ import { Slider } from "@/components/ui/slider"
 import { Input } from "@/components/ui/input"
 import FileUpload from "./file-upload"
 import AspectRatioSelector from "./aspect-ratio-selector"
+import CameraStyle from "./CameraStyle"
+import ArtStyle from "./ArtStyle"
+import Lighting from "./Lighting"
+import Filter from "./Filter"
 
 const versionOptions = [
   { value: "v6", label: "Version 6" },
@@ -35,6 +39,14 @@ interface MidjourneyProps {
   setSeed: (value: string) => void
   referenceImage: string | null
   setReferenceImage: (value: string | null) => void
+  cameraStyle: string
+  setCameraStyle: (value: string) => void
+  artStyle: string
+  setArtStyle: (value: string) => void
+  lighting: string
+  setLighting: (value: string) => void
+  filter: string
+  setFilter: (value: string) => void
 }
 
 export default function Midjourney({
@@ -54,6 +66,14 @@ export default function Midjourney({
   setSeed,
   referenceImage,
   setReferenceImage,
+  cameraStyle,
+  setCameraStyle,
+  artStyle,
+  setArtStyle,
+  lighting,
+  setLighting,
+  filter,
+  setFilter
 }: MidjourneyProps) {
   return (
     <CardContent className="space-y-6">
@@ -73,9 +93,10 @@ export default function Midjourney({
             </SelectContent>
           </Select>
         </div>
-        <div className="space-y-6">
+        <div className="">
           <Label htmlFor="seed">Seed</Label>
           <Input
+            className="mt-0"
             id="seed"
             type="number"
             placeholder="Random seed"
@@ -108,11 +129,20 @@ export default function Midjourney({
       <AspectRatioSelector value={aspectRatio} onChange={setAspectRatio} />
       <Label>Reference Image</Label>
       <FileUpload onFileSelect={setReferenceImage} />
-      <Label>Image Weight</Label>
-      <Slider value={[imageWeight]} onValueChange={([value]) => setImageWeight(value)} min={0} max={2} step={0.1} />
-
-      <Label>Style Strength</Label>
-      <Slider value={[styleStrength]} onValueChange={([value]) => setStyleStrength(value)} max={1000} step={10} />
+      <div className="mt-4">
+        <Label>Image Weight</Label>
+        <Slider value={[imageWeight]} onValueChange={([value]) => setImageWeight(value)} min={0} max={2} step={0.1} />
+        <div className="text-sm text-muted-foreground text-right">{imageWeight}</div>
+      </div>
+      <div className="mt-4">
+        <Label>Style Strength</Label>
+        <Slider value={[styleStrength]} onValueChange={([value]) => setStyleStrength(value)} max={1000} step={10} />
+        <div className="text-sm text-muted-foreground text-right">{styleStrength}</div>
+      </div>
+      <CameraStyle value={cameraStyle} onChange={setCameraStyle} />
+      <ArtStyle value={artStyle} onChange={setArtStyle} />
+      <Lighting value={lighting} onChange={setLighting} />
+      <Filter value={filter} onChange={setFilter} />
     </CardContent>
   )
 }

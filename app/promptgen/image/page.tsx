@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
-      <main className="min-h-screen bg-gradient-to-b from-background to-muted">
+      <main className="min-h-screen bg-gradient-to-b from-gray-50 to-purple-100">
         <ModelSelection />
       </main>
       <Footer />
