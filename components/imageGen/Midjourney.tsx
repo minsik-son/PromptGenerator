@@ -8,11 +8,11 @@ import { Textarea } from "@/components/ui/textarea"
 import { Slider } from "@/components/ui/slider"
 import { Input } from "@/components/ui/input"
 import FileUpload from "./file-upload"
-import AspectRatioSelector from "./aspect-ratio-selector"
-import CameraStyle from "./CameraStyle"
-import ArtStyle from "./ArtStyle"
-import Lighting from "./Lighting"
-import Filter from "./Filter"
+import AspectRatioSelector from "./PromptComponents/aspect-ratio-selector"
+import CameraStyle from "./PromptComponents/CameraStyle"
+import ArtStyle from "./PromptComponents/ArtStyle"
+import Lighting from "./PromptComponents/Lighting"
+import Filter from "./PromptComponents/Filter"
 
 const versionOptions = [
   { value: "v6", label: "Version 6" },
@@ -93,7 +93,7 @@ export default function Midjourney({
             </SelectContent>
           </Select>
         </div>
-        <div className="">
+        <div className="space-y-2">
           <Label htmlFor="seed">Seed</Label>
           <Input
             className="mt-0"
