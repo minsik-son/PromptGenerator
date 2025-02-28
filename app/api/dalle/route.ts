@@ -34,7 +34,7 @@ ${aspectRatio ? `Aspect ratio: ${aspectRatio}` : ''}`;
 
     // GPT API 호출
     const completion = await openai.chat.completions.create({
-      model: "gpt-4-turbo",
+      model: "gpt-4o-mini",
       messages: [
         { role: "system", content: systemMessage },
         { role: "user", content: userMessage }

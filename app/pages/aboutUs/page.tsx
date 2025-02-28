@@ -4,7 +4,7 @@ import { Navigation } from "@/components/navigation"
 export default function AboutPage() {
   return (
     <main className="min-h-screen">
-        <Navigation />
+        <Navigation sticky={true} />
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-b from-primary/10 to-background pt-24 pb-16">

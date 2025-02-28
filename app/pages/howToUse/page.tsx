@@ -17,7 +17,7 @@ import { Navigation } from "@/components/navigation"
 export default function UserGuidePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
-      <Navigation />
+      <Navigation sticky={true} />
 
       {/* Header */}
       <header className="py-12 text-center px-4">

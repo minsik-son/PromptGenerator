@@ -12,7 +12,7 @@ interface NavigationProps {
   sticky: boolean;
 }
 
-export function Navigation({ sticky = false }: NavigationProps) {
+export function Navigation({ sticky }: NavigationProps) {
   const [isConnected, setIsConnected] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 

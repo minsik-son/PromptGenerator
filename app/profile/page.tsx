@@ -31,7 +31,7 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navigation />
+      <Navigation sticky={true} />
       <main className="flex-1 container py-8">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-start gap-6 mb-8">
