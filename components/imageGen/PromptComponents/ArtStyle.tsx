@@ -12,18 +12,24 @@ interface ArtStyleProps {
   onChange: (value: string) => void
 }
 
+// TXT 파일에서 추출한 아트 스타일 목록
 const originalArtStyles = [
-  { value: "Impressionism", label: "인상주의", img: "/images/Art/Impressionism.png" },
-  { value: "Expressionism", label: "표현주의", img: "/images/Art/Expressionism.png" },
-  { value: "Cubism", label: "입체주의", img: "/images/Art/Cubism.png" },
-  { value: "Surrealism", label: "초현실주의", img: "/images/Art/Surrealism.png" },
-  { value: "Minimalism", label: "미니멀리즘", img: "/images/Art/Minimalism.png" },
-  { value: "Pop Art", label: "팝 아트", img: "/images/Art/PopArt.png" },
-  { value: "Realism", label: "사실주의", img: "/images/Art/Realism.png" },
-  { value: "Abstract", label: "추상화", img: "/images/Art/Abstract.png" },
-  { value: "Baroque", label: "바로크", img: "/images/Art/Baroque.png" },
-  { value: "Renaissance", label: "르네상스", img: "/images/Art/Renaissance.png" },
-  { value: "Romanticism", label: "낭만주의", img: "/images/Art/Romanticism.png" }
+  { value: "Oil painting", label: "Oil Painting", img: "/images/Art/oil_painting.png" },
+  { value: "Watercolor painting", label: "Watercolor", img: "/images/Art/watercolor.png" },
+  { value: "Ink sketch", label: "Ink Sketch", img: "/images/Art/ink_sketch.png" },
+  { value: "Charcoal drawing", label: "Charcoal Drawing", img: "/images/Art/charcoal.png" },
+  { value: "Acrylic painting", label: "Acrylic Painting", img: "/images/Art/acrylic.png" },
+  { value: "Pastel painting", label: "Pastel Painting", img: "/images/Art/pastel.png" },
+  { value: "Impressionist painting", label: "Impressionist", img: "/images/Art/impressionist.png" },
+  { value: "Cubism", label: "Cubism", img: "/images/Art/cubism.png" },
+  { value: "Surrealism", label: "Surrealism", img: "/images/Art/surrealism.png" },
+  { value: "Pixel art", label: "Pixel Art", img: "/images/Art/pixel_art.png" },
+  { value: "Vector illustration", label: "Vector Illustration", img: "/images/Art/vector.png" },
+  { value: "Cyberpunk", label: "Cyberpunk", img: "/images/Art/cyberpunk.png" },
+  { value: "Anime style", label: "Anime Style", img: "/images/Art/anime.png" },
+  { value: "3D render", label: "3D Render", img: "/images/Art/3d_render.png" },
+  { value: "Studio Ghibli style", label: "Studio Ghibli", img: "/images/Art/ghibli.png" },
+  { value: "Disney-style animation", label: "Disney Style", img: "/images/Art/disney.png" }
 ];
 
 export default function ArtStyle({ value, onChange }: ArtStyleProps) {

@@ -29,14 +29,18 @@ export default function Promptmode() {
             </div>
 
             <div className="rounded-lg bg-background p-6 shadow-lg relative overflow-hidden">
+            <Link href="/promptgen/video-prompt">
               <Video className="h-12 w-12 text-primary" />
               <h3 className="mt-4 text-xl font-bold">Video Production</h3>
               <p className="mt-2 text-muted-foreground">Create videos with AI-powered tools</p>
+            </Link>
             </div>
             <div className="rounded-lg bg-background p-6 shadow-lg relative overflow-hidden">
+            <Link href="/promptgen/llm">
               <MessageSquare className="h-12 w-12 text-primary" />
               <h3 className="mt-4 text-xl font-bold">Language Models</h3>
               <p className="mt-2 text-muted-foreground">Utilize GPT and Claude for various applications</p>
+              </Link>
             </div>
             </div>
               <p className="text-center text-muted-foreground mt-8">

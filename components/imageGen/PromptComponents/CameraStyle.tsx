@@ -12,18 +12,23 @@ interface CameraStyleProps {
   onChange: (value: string) => void
 }
 
+// TXT 파일에서 추출한 카메라 스타일 목록
 const originalCameraStyles = [
-  { value: "DSLR", label: "DSLR", img: "/images/Camera/DSLR.jpg" },
-  { value: "Panorama", label: "Panorama", img: "/images/Camera/DSLR.jpg" },
-  { value: "Macro Lens", label: "Macro Lens", img: "/images/Camera/DSLR.jpg" },
-  { value: "Pinhole Lens", label: "Pinhole Lens", img: "/images/Camera/DSLR.jpg" },
-  { value: "Telephoto", label: "Telephoto", img: "/images/Camera/DSLR.png" },
-  { value: "Ultra Wide", label: "Ultra Wide", img: "/images/Camera/DSLR.png" },
-  { value: "Polaroid", label: "Polaroid", img: "/images/Camera/DSLR.png" },
-  { value: "Fisheye", label: "Fisheye", img: "/images/Camera/DSLR.png" },
-  { value: "Drone", label: "Drone", img: "/images/Camera/DSLR.png" },
-  { value: "Satellite", label: "Satellite", img: "/images/Camera/DSLR.png" },
-  { value: "GoPro", label: "GoPro", img: "/images/Camera/DSLR.png" }
+  { value: "Close-up shot", label: "Close-up Shot", img: "/images/Camera/closeup.jpg" },
+  { value: "Extreme close-up", label: "Extreme Close-up", img: "/images/Camera/extreme_closeup.jpg" },
+  { value: "Wide-angle shot", label: "Wide-angle Shot", img: "/images/Camera/wide_angle.jpg" },
+  { value: "Over-the-shoulder shot", label: "Over-the-shoulder", img: "/images/Camera/over_shoulder.jpg" },
+  { value: "Bird's-eye view", label: "Bird's-eye View", img: "/images/Camera/birds_eye.jpg" },
+  { value: "Low-angle shot", label: "Low-angle Shot", img: "/images/Camera/low_angle.jpg" },
+  { value: "High-angle shot", label: "High-angle Shot", img: "/images/Camera/high_angle.jpg" },
+  { value: "Dutch angle", label: "Dutch Angle", img: "/images/Camera/dutch_angle.jpg" },
+  { value: "Macro photography", label: "Macro Photography", img: "/images/Camera/macro.jpg" },
+  { value: "Long exposure", label: "Long Exposure", img: "/images/Camera/long_exposure.jpg" },
+  { value: "Cinematic shot", label: "Cinematic Shot", img: "/images/Camera/cinematic.jpg" },
+  { value: "Film still", label: "Film Still", img: "/images/Camera/film_still.jpg" },
+  { value: "Shallow depth of field", label: "Shallow DoF", img: "/images/Camera/shallow_dof.jpg" },
+  { value: "Motion blur", label: "Motion Blur", img: "/images/Camera/motion_blur.jpg" },
+  { value: "Bokeh effect", label: "Bokeh Effect", img: "/images/Camera/bokeh.jpg" }
 ];
 
 export default function CameraStyle({ value, onChange }: CameraStyleProps) {

@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import AspectRatioSelector from "./PromptComponents/aspect-ratio-selector"
-import { Loader2 } from "lucide-react"
+import { Loader2, X } from "lucide-react"
 import { toast } from "sonner"
 import { generateDallePrompt, dalleStyleSuggestions } from "@/lib/dalle-ai"
 
@@ -30,6 +30,9 @@ export default function Dalle({
 }: DalleProps) {
   const [isGenerating, setIsGenerating] = useState(false);
   const [selectedStyle, setSelectedStyle] = useState("none");
+  const [showGeneratedPrompt, setShowGeneratedPrompt] = useState(false);
+  const [generatedPrompt, setGeneratedPrompt] = useState("");
+  const [originalPrompt, setOriginalPrompt] = useState("");
 
   const handleGeneratePrompt = async () => {
     if (!prompt.trim()) {
@@ -38,6 +41,8 @@ export default function Dalle({
     }
 
     setIsGenerating(true);
+    setShowGeneratedPrompt(false);
+    setOriginalPrompt(prompt);
 
     try {
       const result = await generateDallePrompt({
@@ -49,7 +54,8 @@ export default function Dalle({
       if ('error' in result) {
         toast.error(result.error || "Failed to generate prompt");
       } else {
-        setPrompt(result.generatedPrompt);
+        setGeneratedPrompt(result.generatedPrompt);
+        setShowGeneratedPrompt(true);
         toast.success("Prompt enhanced successfully!");
       }
     } catch (error) {
@@ -60,30 +66,71 @@ export default function Dalle({
     }
   };
 
+  const applyGeneratedPrompt = () => {
+    setPrompt(generatedPrompt);
+    setShowGeneratedPrompt(false);
+    setGeneratedPrompt("");
+  };
+
+  const cancelGeneratedPrompt = () => {
+    setShowGeneratedPrompt(false);
+    setGeneratedPrompt("");
+  };
+
   return (
     <CardContent className="space-y-8 max-h-[80vh] overflow-y-auto pr-6 mt-10">
       <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <Label htmlFor="prompt">Prompt</Label>
-            <Textarea
-              id="prompt"
-              placeholder="Describe what you want to create..."
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              className="h-32 resize-none"
-            />
+            <div className="relative">
+              <Textarea
+                id="prompt"
+                placeholder="Describe what you want to create..."
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                className="h-32 resize-none pr-8"
+              />
+              {prompt && (
+                <button 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setPrompt("");
+                  }}
+                  className="absolute top-2 right-2 text-gray-500 hover:text-gray-900 transition-colors bg-white/80 rounded-full p-1"
+                  title="Clear prompt"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="negative">Negative Prompt</Label>
-            <Textarea
-              id="negative"
-              placeholder="Describe what you want to avoid..."
-              value={negativePrompt}
-              onChange={(e) => setNegativePrompt(e.target.value)}
-              className="h-32 resize-none"
-            />
+            <div className="relative">
+              <Textarea
+                id="negative"
+                placeholder="Describe what you want to avoid..."
+                value={negativePrompt}
+                onChange={(e) => setNegativePrompt(e.target.value)}
+                className="h-32 resize-none pr-8"
+              />
+              {negativePrompt && (
+                <button 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setNegativePrompt("");
+                  }}
+                  className="absolute top-2 right-2 text-gray-500 hover:text-gray-900 transition-colors bg-white/80 rounded-full p-1"
+                  title="Clear negative prompt"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
           </div>
         </div>
 
@@ -123,6 +170,30 @@ export default function Dalle({
           )}
         </Button>
       </div>
+      
+      {showGeneratedPrompt && (
+        <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-4 mt-6">
+          <div className="flex justify-between items-center">
+            <h3 className="text-md font-medium">Enhanced Prompt</h3>
+            <div className="space-x-2">
+              <Button variant="outline" size="sm" onClick={cancelGeneratedPrompt}>
+                Cancel
+              </Button>
+              <Button size="sm" onClick={applyGeneratedPrompt}>
+                Use This Prompt
+              </Button>
+            </div>
+          </div>
+          
+          <div className="bg-white p-3 rounded border border-gray-200">
+            <p className="text-sm">{generatedPrompt}</p>
+          </div>
+          
+          <div className="text-xs text-gray-500">
+            <p>Original: "{originalPrompt}"</p>
+          </div>
+        </div>
+      )}
     </CardContent>
   )
 }

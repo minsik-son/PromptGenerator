@@ -3,10 +3,17 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu, Search, Wallet } from "lucide-react"
+import { Menu, Search, Wallet, ChevronDown, Music } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 import Image from 'next/image';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 
 interface NavigationProps {
   sticky: boolean;
@@ -15,6 +22,7 @@ interface NavigationProps {
 export function Navigation({ sticky }: NavigationProps) {
   const [isConnected, setIsConnected] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [promptMenuOpen, setPromptMenuOpen] = useState(false)
 
   const handleLogin = () => {
     setIsLoggedIn(true)
@@ -55,9 +63,28 @@ export function Navigation({ sticky }: NavigationProps) {
           </SheetTrigger>
           <SheetContent side="right" className="pl-0">
             <nav className="grid gap-6 px-2 py-6">
-              <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">
-                Prompt Generator
-              </Link>
+              {/* 모바일용 아코디언 메뉴 */}
+              <Collapsible
+                open={promptMenuOpen}
+                onOpenChange={setPromptMenuOpen}
+                className="w-full"
+              >
+                <CollapsibleTrigger asChild>
+                  <button className="flex w-full items-center justify-between text-sm text-muted-foreground hover:text-foreground py-2">
+                    Prompt Generator
+                    <ChevronDown className={`h-4 w-4 transition-transform ${promptMenuOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="pt-1 pl-4 space-y-3 animate-accordion-down pb-2">
+                  <Link href="/music-prompt" className="flex items-center text-sm text-muted-foreground hover:text-foreground py-1">
+                    Music Prompt
+                  </Link>
+                  <Link href="/image-prompt" className="flex items-center text-sm text-muted-foreground hover:text-foreground py-1">
+                    Image Prompt
+                  </Link>
+                </CollapsibleContent>
+              </Collapsible>
+              
               <Link href="/pages/howToUse" className="text-sm text-muted-foreground hover:text-foreground">
                 How to Use
               </Link>
@@ -70,13 +97,38 @@ export function Navigation({ sticky }: NavigationProps) {
         
         {/* 데스크톱 메뉴 */}
         <nav className="hidden md:flex items-center space-x-6 justify-end">
-          <Link href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            Prompt Generator
-          </Link>
-          <Link href="/pages/howToUse" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <div className="relative h-16 flex items-center">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors h-16">
+                  Prompt Generator
+                  <ChevronDown className="ml-1 h-4 w-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent 
+                align="start" 
+                className="absolute top-[32px] left-0 border-t-0 rounded-none rounded-b-md w-[160px] shadow-md"
+                sideOffset={0}
+                style={{ marginTop: '-1px' }}
+              >
+                <DropdownMenuItem asChild className="justify-start px-4 py-2.5">
+                  <Link href="/music-prompt" className="w-full">
+                    Music Prompt
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="justify-start px-4 py-2.5">
+                  <Link href="/image-prompt" className="w-full">
+                    Image Prompt
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+          
+          <Link href="/pages/howToUse" className="text-sm text-muted-foreground hover:text-foreground transition-colors h-16 flex items-center">
             How to Use
           </Link>
-          <Link href="/pages/aboutUs" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/pages/aboutUs" className="text-sm text-muted-foreground hover:text-foreground transition-colors h-16 flex items-center">
             About Us
           </Link>
         </nav>

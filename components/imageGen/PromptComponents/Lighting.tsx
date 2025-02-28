@@ -13,16 +13,20 @@ interface LightingProps {
 }
 
 const originalLightingStyles = [
-  { value: "Natural", label: "자연광", img: "/images/Lighting/Natural.png" },
-  { value: "Studio", label: "스튜디오", img: "/images/Lighting/Studio.png" },
-  { value: "Dramatic", label: "드라마틱", img: "/images/Lighting/Dramatic.png" },
-  { value: "Soft", label: "소프트", img: "/images/Lighting/Soft.png" },
-  { value: "Harsh", label: "하드", img: "/images/Lighting/Harsh.png" },
-  { value: "Backlit", label: "백라이트", img: "/images/Lighting/Backlit.png" },
-  { value: "Golden Hour", label: "골든아워", img: "/images/Lighting/GoldenHour.png" },
-  { value: "Blue Hour", label: "블루아워", img: "/images/Lighting/BlueHour.png" },
-  { value: "Neon", label: "네온", img: "/images/Lighting/Neon.png" },
-  { value: "Cinematic", label: "시네마틱", img: "/images/Lighting/Cinematic.png" }
+  { value: "Golden hour lighting", label: "Golden Hour", img: "/images/Lighting/golden_hour.png" },
+  { value: "Soft morning light", label: "Morning Light", img: "/images/Lighting/morning.png" },
+  { value: "Moonlight glow", label: "Moonlight", img: "/images/Lighting/moonlight.png" },
+  { value: "Sunset lighting", label: "Sunset", img: "/images/Lighting/sunset.png" },
+  { value: "Backlit", label: "Backlit", img: "/images/Lighting/backlit.png" },
+  { value: "Cinematic lighting", label: "Cinematic", img: "/images/Lighting/cinematic.png" },
+  { value: "Studio lighting", label: "Studio Lighting", img: "/images/Lighting/studio.png" },
+  { value: "Noir lighting", label: "Film Noir", img: "/images/Lighting/noir.png" },
+  { value: "Chiaroscuro", label: "Chiaroscuro", img: "/images/Lighting/chiaroscuro.png" },
+  { value: "God rays", label: "God Rays", img: "/images/Lighting/god_rays.png" },
+  { value: "Neon lighting", label: "Neon Lighting", img: "/images/Lighting/neon.png" },
+  { value: "Bioluminescent glow", label: "Bioluminescent", img: "/images/Lighting/bioluminescent.png" },
+  { value: "LED lighting", label: "LED Lighting", img: "/images/Lighting/led.png" },
+  { value: "Soft diffused light", label: "Diffused Light", img: "/images/Lighting/diffused.png" }
 ];
 
 export default function Lighting({ value, onChange }: LightingProps) {

@@ -1,27 +1,112 @@
-Chaos <0~100>
-생성되는 이미지의 불확실성을 조절 - 높을수록 뜬금없는 결과물이 나올 가능성이 높아짐
+### 📷 **미드저니 프롬프트 스타일 가이드**  
+미드저니에서 원하는 이미지 스타일을 얻기 위해 **카메라 연출 스타일, 그림 스타일, 필터 스타일, 조명 스타일**을 정리했다.
 
-repeat <1~40>
-구독 모델에 따라 적용 가능한 숫자 범위가 다름 (Basic 2~4)
-빠른 생성 모드에서만 작동  
+---
 
-tile <boolean> 
-반복적인 패턴을 형성하고 싶을때 사용
+## 🎥 **1. 카메라 연출 스타일 (Camera Composition & Cinematic Styles)**  
+카메라 기법을 활용해 프레임을 구성하는 스타일  
 
-video <boolean>
-디스코드에서 해당 이미지에 편지봉투 이모지를 남기면 영상을 DM으로 보내줌
+🔹 **구도 & 촬영 기법**
+- **Close-up shot** – 클로즈업 촬영 (인물, 디테일 강조)
+- **Extreme close-up** – 초근접 촬영 (눈, 입술 등 특정 부분 강조)
+- **Wide-angle shot** – 광각 촬영 (넓은 풍경, 원근감 강조)
+- **Over-the-shoulder shot** – 캐릭터 어깨 너머 시점  
+- **Bird's-eye view / Top-down view** – 탑뷰, 위에서 내려다보는 시점
+- **Low-angle shot** – 로우앵글 촬영 (아래에서 위로 촬영, 웅장함 강조)
+- **High-angle shot** – 하이앵글 촬영 (위에서 아래로, 왜소함 강조)
+- **Dutch angle / Tilted shot** – 기울어진 카메라 앵글 (긴장감 연출)
+- **Macro photography** – 접사 촬영 (초근접, 작은 디테일 강조)
+- **Long exposure photography** – 장노출 촬영 (빛의 궤적 강조)
 
-—weird <0~3000>
-특이하고 실험적인 이미지를 생성하는 파라미터
-기본값은 0, 모델버전 5이상에서만 사용가능
-Seed 파라미터에 완벽하게 호환되지않음
+🔹 **시네마틱 스타일**
+- **Cinematic shot** – 영화 같은 연출  
+- **Film still** – 영화 한 장면 같은 정지 화면  
+- **Overexposed / Underexposed** – 과노출 / 저노출  
+- **Shallow depth of field** – 얕은 피사계 심도 (배경 흐림, 보케 효과)  
+- **Motion blur** – 움직임을 강조하는 블러 효과  
+- **Bokeh effect** – 배경을 흐리게 하는 보케 효과  
 
-Quaility <0.25, 0.5, 1>
-이미지 렌더링 정도를 성정하는 파라미터, 기본값은 1
-GPU 분 사용량에 영향을 미침 (높을수록 시간소모)
+---
 
-—stop<10~100>
-기본값은 100
-아래의 숫자를 설정하면 디테일이 생략되거나 이미지가 뿌옇게 생성됨
+## 🎨 **2. 그림 스타일 (Art & Illustration Styles)**  
+그림 스타일을 지정하는 키워드  
 
+🔹 **전통적인 아트 스타일**
+- **Oil painting** – 유화 스타일  
+- **Watercolor painting** – 수채화  
+- **Ink sketch** – 잉크 드로잉, 펜화  
+- **Charcoal drawing** – 목탄 스케치  
+- **Acrylic painting** – 아크릴 페인팅  
+- **Pastel painting** – 파스텔화  
+- **Impressionist painting** – 인상주의 스타일  
+- **Cubism** – 큐비즘, 입체파 (피카소 스타일)  
+- **Surrealism** – 초현실주의 (달리 스타일)  
+
+🔹 **디지털 & 현대적인 스타일**
+- **Pixel art** – 픽셀 아트 (8비트, 16비트 스타일)  
+- **Vector illustration** – 벡터 일러스트  
+- **Cyberpunk** – 사이버펑크 스타일  
+- **Futuristic sci-fi** – 미래적인 SF 스타일  
+- **Anime style** – 애니메이션 스타일  
+- **Manga illustration** – 일본 만화 스타일  
+- **3D render** – 3D 렌더링 스타일  
+- **Low poly style** – 로우 폴리곤 스타일  
+- **Graffiti** – 그래피티 아트  
+
+🔹 **특정 아트워크 스타일**
+- **Studio Ghibli style** – 지브리 스타일  
+- **Disney-style animation** – 디즈니 애니메이션  
+- **Dark fantasy illustration** – 다크 판타지  
+- **Ukiyo-e** – 일본 전통 판화 스타일  
+- **Steampunk** – 증기펑크 스타일  
+
+---
+
+## 🎞 **3. 필터 스타일 (Filter & Post-processing Styles)**  
+후보정 및 필터 효과를 적용하는 스타일  
+
+🔹 **필름 & 빈티지 스타일**
+- **Vintage film** – 빈티지 필름 스타일  
+- **Kodak Portra 400** – 따뜻한 색감의 필름 느낌  
+- **Fuji Velvia 50** – 선명하고 강한 색감의 필름  
+- **Sepia tone** – 세피아톤 (옛날 사진 느낌)  
+- **Black and white / Monochrome** – 흑백 스타일  
+- **Lomo effect** – 로모그래피 (비네팅과 강한 채도)  
+
+🔹 **색감 & 그래디언트 스타일**
+- **Neon glow** – 네온 빛이 도는 컬러 스타일  
+- **Pastel color palette** – 부드러운 파스텔 색감  
+- **High contrast** – 명암 대비가 강한 스타일  
+- **Duotone** – 두 가지 색상만 사용하는 스타일  
+- **Soft focus** – 부드러운 포커스 효과  
+
+🔹 **Glitch & Digital Effects**
+- **Glitch art** – 디지털 오류 효과 (왜곡, 깨짐)  
+- **Cybernetic glow** – 사이버펑크 느낌의 빛 효과  
+- **Vaporwave aesthetic** – 베이퍼웨이브 스타일 (90년대 레트로)  
+
+---
+
+## 💡 **4. 조명 스타일 (Lighting Styles)**  
+조명 설정을 활용한 스타일 지정  
+
+🔹 **자연광 스타일**
+- **Golden hour lighting** – 황금 시간대 (노을빛)  
+- **Soft morning light** – 부드러운 아침 햇살  
+- **Moonlight glow** – 달빛 조명  
+- **Sunset lighting** – 노을빛 조명  
+- **Backlit** – 역광 효과 (빛 뒤에서 비추는 스타일)  
+
+🔹 **드라마틱한 조명**
+- **Cinematic lighting** – 영화 같은 조명  
+- **Studio lighting** – 스튜디오 조명  
+- **Noir lighting** – 필름 누아르 느낌의 강한 그림자 조명  
+- **Chiaroscuro** – 명암 대비가 극명한 르네상스 스타일 조명  
+- **God rays** – 신비로운 빛 내림 (구름 사이에서 빛이 내리는 스타일)  
+
+🔹 **인공조명 스타일**
+- **Neon lighting** – 네온사인 조명  
+- **Bioluminescent glow** – 생체발광 효과  
+- **LED lighting** – LED 조명  
+- **Soft diffused light** – 부드럽게 퍼지는 조명  
 

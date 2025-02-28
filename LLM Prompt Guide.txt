@@ -1,0 +1,71 @@
+Here’s the English version of the **Beginner’s Guide to GPT Prompt Engineering**:
+
+---
+
+# **Beginner’s Guide to GPT Prompt Engineering**
+
+## **1. What is Prompt Engineering?**
+
+Prompt engineering is the process of designing input prompts to effectively guide AI language models, such as ChatGPT, to generate desired responses.  
+By providing clear and specific instructions, you can significantly improve the quality of the AI’s output.  
+
+## **2. 7 Key Elements of Effective Prompt Writing**
+
+When crafting a prompt, consider these key factors to achieve the best results:
+
+1. **Objective**: Clearly state what you want the AI to do. For example:  
+   - *"Summarize this text."*  
+   - *"Perform a sentiment analysis."*
+
+2. **Context**: Provide background information or constraints, but keep it concise and relevant.
+
+3. **Role Assignment**: Assign the AI a specific role to improve accuracy.  
+   - Example: *"You are now a marketing expert."*
+
+4. **Examples & Guidelines**: Show desired output formats or examples to guide the AI.  
+   - Example: *"Generate an email apology with a professional tone."*
+
+5. **Tone & Style**: Specify the desired tone, such as formal, friendly, or technical.  
+   - Example: *"Write this in a casual and engaging manner."*
+
+6. **Target Audience**: Indicate who the content is for.  
+   - Example: *"Explain this topic in a way that a 10-year-old can understand."*
+
+7. **Essential Information**: Provide critical details that must be included in the response.
+
+By incorporating these elements, you can refine prompts to elicit more accurate and useful responses.
+
+## **3. Best Practices for Writing Prompts**
+
+- **Keep It Concise**: Avoid unnecessary details and focus on the essential instructions.
+- **Structure Your Prompt**: Use bullet points or markdown for clarity.
+- **Break Down Complex Tasks**: If the request is complicated, divide it into steps.
+
+## **4. Real-World Examples**
+
+### **Example 1: Writing a Business Email**
+```
+Role: You are a professional business email writer.  
+Objective: Write an apology email to customers regarding a delayed product launch.  
+Context: The product release is delayed by one week, and customers need to be informed of the new release date.  
+Tone: Professional and reassuring.  
+```
+
+### **Example 2: Writing a Blog Post**
+```
+Role: You are a tech blog writer.  
+Objective: Write a blog post about "The Importance of Prompt Engineering."  
+Context: The content should be beginner-friendly and include practical tips.  
+Tone: Friendly and easy to understand.  
+Target Audience: Beginners interested in AI.  
+```
+
+## **5. Additional Resources for Learning**
+
+For further understanding of prompt engineering, check out these resources:
+
+- [Mastering ChatGPT Prompt Engineering](https://www.aiground.co.kr/mastering-chatgpt-prompt-engineering/)
+- [ChatGPT Prompt Engineering Guide - Openmaru](https://www.openmaru.io/chatgpt-guide-prompts/)
+
+### **Final Thoughts**
+Prompt engineering improves with practice. Experiment with different prompts and refine them to optimize your interactions with AI. 🚀

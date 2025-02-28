@@ -12,17 +12,21 @@ interface FilterProps {
   onChange: (value: string) => void
 }
 
+// TXT 파일에서 추출한 필터 스타일 목록
 const originalFilterStyles = [
-  { value: "Vintage", label: "빈티지", img: "/images/Filter/Vintage.png" },
-  { value: "Noir", label: "느와르", img: "/images/Filter/Noir.png" },
-  { value: "Sepia", label: "세피아", img: "/images/Filter/Sepia.png" },
-  { value: "Grainy", label: "그레인", img: "/images/Filter/Grainy.png" },
-  { value: "Vibrant", label: "비비드", img: "/images/Filter/Vibrant.png" },
-  { value: "Muted", label: "뮤티드", img: "/images/Filter/Muted.png" },
-  { value: "Pastel", label: "파스텔", img: "/images/Filter/Pastel.png" },
-  { value: "High Contrast", label: "하이 컨트라스트", img: "/images/Filter/HighContrast.png" },
-  { value: "Low Contrast", label: "로우 컨트라스트", img: "/images/Filter/LowContrast.png" },
-  { value: "Monochrome", label: "모노크롬", img: "/images/Filter/Monochrome.png" }
+  { value: "Vintage film", label: "Vintage Film", img: "/images/Filter/vintage.png" },
+  { value: "Kodak Portra 400", label: "Kodak Portra", img: "/images/Filter/kodak.png" },
+  { value: "Fuji Velvia 50", label: "Fuji Velvia", img: "/images/Filter/fuji.png" },
+  { value: "Sepia tone", label: "Sepia Tone", img: "/images/Filter/sepia.png" },
+  { value: "Black and white", label: "Black & White", img: "/images/Filter/bw.png" },
+  { value: "Lomo effect", label: "Lomo Effect", img: "/images/Filter/lomo.png" },
+  { value: "Neon glow", label: "Neon Glow", img: "/images/Filter/neon.png" },
+  { value: "Pastel color palette", label: "Pastel Colors", img: "/images/Filter/pastel.png" },
+  { value: "High contrast", label: "High Contrast", img: "/images/Filter/high_contrast.png" },
+  { value: "Duotone", label: "Duotone", img: "/images/Filter/duotone.png" },
+  { value: "Soft focus", label: "Soft Focus", img: "/images/Filter/soft_focus.png" },
+  { value: "Glitch art", label: "Glitch Art", img: "/images/Filter/glitch.png" },
+  { value: "Vaporwave aesthetic", label: "Vaporwave", img: "/images/Filter/vaporwave.png" }
 ];
 
 export default function Filter({ value, onChange }: FilterProps) {
