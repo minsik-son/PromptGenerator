@@ -32,7 +32,7 @@ export default async function SelectPrompt() {
   */
   return (
     <div className="min-h-screen flex flex-col">
-      <Navigation />
+      <Navigation sticky={true} />
       <main className="flex-1">
         {/* Schema.org JSON-LD */}
         <script

@@ -30,7 +30,7 @@ export default async function Home() {
   */
   return (
     <div className="min-h-screen flex flex-col">
-      <Navigation />
+      <Navigation sticky={true} />
       <main className="flex-1">
         {/* Schema.org JSON-LD */}
         <script
@@ -55,7 +55,6 @@ export default async function Home() {
             })
           }}
         />
-        <Hero />
         <SelectMode />
       </main>
       <Footer />
